@@ -1,0 +1,15 @@
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400);
+@import url(//fonts.googleapis.com/css?family=Open+Sans:600);
+@import url(//fonts.googleapis.com/css?family=Open+Sans:700);
+@import url(//fonts.googleapis.com/css?family=Open+Sans:800);
+.class { behavior:url(js/PIE.htc); position:relative;}
+
+a.magnifier2:hover .zoom{
+	display: block;
+}
+a.magnifier2 .zoom, .bottom_p{
+	display: none;
+}
+body{
+	min-width: 1143px;
+}
