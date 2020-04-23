@@ -33,7 +33,6 @@ class ContactForm extends Mailable
     {
         return $this->markdown('emails.contact-form')
             ->subject("Mensaje Enviado de {$this->form['name']}")
-            ->from($this->form['email'], $this->form['name'])
-            ->cc('luissegura9@hotmail.com', 'Luis Segura');
+            ->from($this->form['email'], $this->form['name']);
     }
 }

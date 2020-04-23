@@ -68,7 +68,7 @@ class PagesController extends Controller
      */
     public function email(EmailRequest $request)
     {
-        Mail::to('sonusbeat@hotmail.com')->send(new ContactForm($request->except('_token')));
+        Mail::to('luissegura9@hotmail.com')->send(new ContactForm($request->except('_token')));
 
         session()->flash('message', 'Email enviado satisfactoriamente');
 
