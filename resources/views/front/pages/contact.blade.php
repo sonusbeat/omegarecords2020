@@ -15,8 +15,9 @@ Pongase en contacto con nostros para poder atender todas sus preguntas a travez 
       <h2 class="v2">Formulario de Contacto</h2><br>
 
       @if(session('message'))
-        <div class="alert alert-success">
-          <center><b>{!! session('message') !!}</b></center>
+        <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <div class="text-center"><b>{!! session('message') !!}</b></div>
         </div><!-- /.alert -->
       @endif
 
@@ -33,7 +34,9 @@ Pongase en contacto con nostros para poder atender todas sus preguntas a travez 
               id="name"
               value="{{ old('name') }}"
             >
-            {!! $errors->first('name', '<br><span class="text-danger">&nbsp;<b>:message</b></span>') !!}
+          @error('name')
+          <br><div class="text-danger"><b>{{ $message }}</b></div>
+          @enderror
           </div>
         </div><!-- /nombre -->
 
@@ -47,7 +50,9 @@ Pongase en contacto con nostros para poder atender todas sus preguntas a travez 
               id="email"
               value="{{ old('email') }}"
             >
-            {!! $errors->first('email', '<br><span class="text-danger">&nbsp;<b>:message</b></span>') !!}
+          @error('email')
+          <br><div class="text-danger"><b>{{ $message }}</b></div>
+          @enderror
           </div>
         </div><!-- /email -->
 
@@ -61,7 +66,9 @@ Pongase en contacto con nostros para poder atender todas sus preguntas a travez 
               id="mobile"
               value="{{ old('mobile') }}"
             >
-            {!! $errors->first('mobile', '<br><span class="text-danger">&nbsp;<b>:message</b></span>') !!}
+          @error('mobile')
+          <br><div class="text-danger"><b>{{ $message }}</b></div>
+          @enderror
           </div>
         </div><!-- /mobile -->
 
@@ -69,7 +76,9 @@ Pongase en contacto con nostros para poder atender todas sus preguntas a travez 
           <label class="col-md-2 control-label" for="message">Mensaje</label>
           <div class="col-md-10">
             <textarea name="message" class="form-control" rows="3" id="message">{{ old('message') }}</textarea>
-            {!! $errors->first('message', '<br><span class="text-danger">&nbsp;<b>:message</b></span>') !!}
+          @error('message')
+          <br><div class="text-danger"><b>{{ $message }}</b></div>
+          @enderror
           </div>
         </div><!-- /message -->
 

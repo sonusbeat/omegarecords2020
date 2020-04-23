@@ -1,4 +1,5 @@
 <?php
+use \App\Mail\ContactForm;
 
 Route::namespace("Front")->name('front.')->group(function() {
 	Route::get('/', 'PagesController@index')->name('home');

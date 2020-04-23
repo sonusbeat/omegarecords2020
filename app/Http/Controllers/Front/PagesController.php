@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmailRequest;
-use Mail;
+use App\Mail\ContactForm;
+use Illuminate\Support\Facades\Mail;
 
 //use Illuminate\Http\Request;
 
@@ -67,19 +68,10 @@ class PagesController extends Controller
      */
     public function email(EmailRequest $request)
     {
-        $form = $request->except('_token');
+        Mail::to('sonusbeat@hotmail.com')->send(new ContactForm($request->except('_token')));
 
-        Mail::send('emails.message', ['form' => $form], function ($message) use ($form)
-        {
-            $message->from($form['email'], $form['name']);
+        session()->flash('message', 'Email enviado satisfactoriamente');
 
-            $message->to('luissegura9@hotmail.com', 'Luis Segura')
-                ->cc('omegarecordsgdl@gmail.com', 'Omega Records')
-                ->subject('Mensaje enviado desde Omega Records');
-        });
-
-        session()->flash('message',"Su mensaje ha sido enviado satisfactoriamente,<br>pronto nos pondremos en contacto con usted");
-
-        return redirect()->back();
+        return redirect(route('front.contact'));
     }
 }
