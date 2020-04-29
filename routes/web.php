@@ -1,5 +1,4 @@
 <?php
-use \App\Mail\ContactForm;
 
 Route::namespace("Front")->name('front.')->group(function() {
 	Route::get('/', 'PagesController@index')->name('home');
@@ -9,3 +8,7 @@ Route::namespace("Front")->name('front.')->group(function() {
 	Route::get('contacto', 'PagesController@contact')->name('contact');
 	Route::post('email-process', 'PagesController@email')->name('email-process');
 });
+
+Auth::routes(['register' => false]);
+
+Route::get('/home', 'HomeController@index')->name('home');
