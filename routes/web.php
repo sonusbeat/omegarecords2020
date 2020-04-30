@@ -10,5 +10,3 @@ Route::namespace("Front")->name('front.')->group(function() {
 });
 
 Auth::routes(['register' => false]);
-
-Route::get('/home', 'HomeController@index')->name('home');
