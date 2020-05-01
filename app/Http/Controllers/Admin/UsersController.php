@@ -7,9 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UsersCreateRequest;
 use App\Http\Requests\UsersUpdateRequest;
 use App\Models\User;
+use App\Traits\ImageTrait;
+use Intervention\Image\Facades\Image;
+use Storage;
 
 class UsersController extends Controller
 {
+    use ImageTrait;
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -47,6 +52,38 @@ class UsersController extends Controller
     {
         // Create user object
         $user = new User($request->except('_token', 'password_confirmation'));
+
+        if($request->hasFile('image')):
+            $file = $request->image;
+            $date = date('Ymdims');
+            $path = public_path().'/imagenes/usuarios/';
+            $file_name = $file->getClientOriginalName();
+            $file_extension = $file->getClientOriginalExtension();
+
+            $large_name = self::filenameTraitment($file_name, $file_extension, $date, 'large');
+            $medium_name = self::filenameTraitment($file_name, $file_extension, $date, 'medium');
+            $thumbnail_name = self::filenameTraitment($file_name, $file_extension, $date, 'thumbnail');
+
+            $image_name = self::removeExtension($file_name, $file_extension, $date);
+
+            Image::make($file->getRealPath())
+                ->resize(1280, null, function ($constrain) {
+                    $constrain->aspectRatio();
+                })->save($path.$large_name);
+
+            Image::make($file->getRealPath())
+                ->resize(780, null, function ($constrain) {
+                    $constrain->aspectRatio();
+                })->save($path.$medium_name);
+
+            Image::make($file->getRealPath())
+                ->resize(480, null, function ($constrain) {
+                    $constrain->aspectRatio();
+                })->save($path.$thumbnail_name);
+
+            $user->image = $image_name;
+            $user->image_alt = $request->image_alt;
+        endif;
 
         // Set properties mass-assignable
         $user->type = $request->type;
@@ -99,12 +136,54 @@ class UsersController extends Controller
         $user->email = $request->email;
         $user->type = $request->type;
         $user->active = $request->active;
-        $user->image = $request->image;
-        $user->image_alt = $request->image_alt;
 
         // Check if password has been changed
         if($user->password != $request->password):
             $user->password = $request->password;
+        endif;
+
+        if($request->hasFile('image')):
+            $file = $request->image;
+            $date = date('Ymdims');
+            $path = 'imagenes/usuarios/';
+            $file_name = $file->getClientOriginalName();
+            $file_extension = $file->getClientOriginalExtension();
+
+            $large_name = self::filenameTraitment($file_name, $file_extension, $date, 'large');
+            $medium_name = self::filenameTraitment($file_name, $file_extension, $date, 'medium');
+            $thumbnail_name = self::filenameTraitment($file_name, $file_extension, $date, 'thumbnail');
+
+            $image_name = self::removeExtension($file_name, $file_extension, $date);
+
+            if (Storage::exists($path . $user->image . '-large.jpg')) :
+                Storage::delete($path . $user->image . '-large.jpg');
+            endif;
+
+            if (Storage::exists($path . $user->image . '-medium.jpg')) :
+                Storage::delete($path . $user->image . '-medium.jpg');
+            endif;
+
+            if (Storage::exists($path . $user->image . '-thumbnail.jpg')) :
+                Storage::delete($path . $user->image . '-thumbnail.jpg');
+            endif;
+
+            Image::make($file->getRealPath())
+                ->resize(1280, null, function ($constrain) {
+                    $constrain->aspectRatio();
+                })->save($path.$large_name);
+
+            Image::make($file->getRealPath())
+                ->resize(780, null, function ($constrain) {
+                    $constrain->aspectRatio();
+                })->save($path.$medium_name);
+
+            Image::make($file->getRealPath())
+                ->resize(480, null, function ($constrain) {
+                    $constrain->aspectRatio();
+                })->save($path.$thumbnail_name);
+
+            $user->image = $image_name;
+            $user->image_alt = $request->image_alt;
         endif;
 
         // Save to database
@@ -126,6 +205,21 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
+        $path = 'imagenes/usuarios/';
+
+        // Delete file from disk
+        if(Storage::exists($path.$user->image.'-large.jpg')) :
+            Storage::delete($path.$user->image.'-large.jpg');
+        endif;
+
+        if(Storage::exists($path.$user->image.'-medium.jpg')) :
+            Storage::delete($path.$user->image.'-medium.jpg');
+        endif;
+
+        if(Storage::exists($path.$user->image.'-thumbnail.jpg')) :
+            Storage::delete($path.$user->image.'-thumbnail.jpg');
+        endif;
+
         $user->delete();
 
         // Create session variable for message confirmation

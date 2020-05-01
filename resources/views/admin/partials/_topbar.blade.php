@@ -57,7 +57,13 @@
                 <!-- User profile and search -->
                 <!-- ============================================================== -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="text-white">{{ auth()->user()->name }}&nbsp;</span><img src="{{ asset('admin/assets/images/users/1.jpg') }}" alt="user" class="rounded-circle" width="31"></a>
+                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="text-white">{{ auth()->user()->name }}&nbsp</span>
+                        @if(auth()->user()->image)
+                            <img src="{{ asset('imagenes/usuarios/'.auth()->user()->image.'-thumbnail.jpg') }}" alt="{{ auth()->user()->image_alt }}" class="rounded-circle" width="31">
+                        @else
+                            <img src="{{ asset('admin/assets/images/users/1.jpg') }}" alt="user" class="rounded-circle" width="31">
+                        @endif
+                    </a>
                     <div class="dropdown-menu dropdown-menu-right user-dd animated">
                         <a class="dropdown-item" href="{{ route('admin.users.show', auth()->user()->id) }}">
                             <i class="ti-user m-r-5 m-l-5"></i>&nbsp;Ver Perfil

@@ -53,7 +53,7 @@
         <!-- Image -->
         <div class="form-group">
             <label for="image">Imagen</label>
-            <input type="text" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{ isset($user) ? $user->image : old('image') }}">
+            <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{ isset($user) ? $user->image : old('image') }}">
 
             @error('image')
             <span class="invalid-feedback font-weight-bold mt-3 ml-2" role="alert">

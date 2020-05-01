@@ -7,7 +7,7 @@
         <h3>Editar Usuario</h3>
     </div>
     <div class="card-body">
-        <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
+        <form action="{{ route('admin.users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="_method" value="PATCH">
 

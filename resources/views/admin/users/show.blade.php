@@ -5,7 +5,12 @@
 <div class="card">
     <div class="card-body">
         <div class="media">
-            <img src="{{ asset('admin/assets/images/users/1.jpg') }}" class="mr-4" alt="User" width="40%">
+            @if($user->image)
+                <img src="{{ asset("imagenes/usuarios/{$user->image}-medium.jpg") }}" class="mr-4" alt="User" width="40%">
+            @else
+                <img src="{{ asset("admin/assets/images/users/1.jpg") }}" class="mr-4" alt="User" width="40%">
+            @endif
+
             <div class="media-body">
                 <h3 class="mt-0">{{ $user->name }}</h3>
                 <table class="table table-striped">
@@ -16,14 +21,6 @@
                     <tr>
                         <th><b>Tipo</b></th>
                         <td>{{ $user->type == 'admin' ? 'Administrador' : 'Registrado' }}</td>
-                    </tr>
-                    <tr>
-                        <th><b>Imagen</b></th>
-                        <td>{{ $user->image }}</td>
-                    </tr>
-                    <tr>
-                        <th><b>Texto alternativo de la imagen</b></th>
-                        <td>{{ $user->image_alt }}</td>
                     </tr>
                     <tr>
                         <th><b>Activo</b></th>
