@@ -43,8 +43,6 @@
             <!-- Page wrapper  -->
             <!-- ============================================================== -->
             <div class="page-wrapper">
-                @include('admin.partials._breadcrumb')
-
                 <!-- ============================================================== -->
                 <!-- Container fluid  -->
                 <!-- ============================================================== -->
@@ -98,5 +96,7 @@
         <script src="{{ asset('admin/assets/libs/flot/jquery.flot.crosshair.js') }}"></script>
         <script src="{{ asset('admin/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
         <script src="{{ asset('admin/dist/js/pages/chart/chart-page-init.js') }}"></script>
+
+        @yield('custom-scripts')
     </body>
 </html>
