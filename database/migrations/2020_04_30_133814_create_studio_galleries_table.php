@@ -15,6 +15,12 @@ class CreateStudioGalleriesTable extends Migration
     {
         Schema::create('studio_galleries', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('title', 100);
+            $table->string('slug', 100);
+            $table->string('image');
+            $table->string('image_alt');
+            $table->string('description');
+            $table->boolean('active');
             $table->timestamps();
         });
     }

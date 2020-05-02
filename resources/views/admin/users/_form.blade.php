@@ -136,6 +136,7 @@
                        name="active"
                        value="1"
                        {{ isset($user) && $user->active == 1 ? 'checked' : null }}
+                       {{ old('active') == 1 ? 'checked' : null }}
                 >
                 <label class="custom-control-label" for="active">Activo</label>
             </div>

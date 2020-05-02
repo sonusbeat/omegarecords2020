@@ -26,7 +26,7 @@ trait ImageTrait
             $imageName .= "-{$sizeName}";
         endif;
 
-        $imageName .= '.' . $extension;
+        $imageName .= '.' . strtolower($extension);
 
         return $imageName;
     }
