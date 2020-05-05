@@ -196,6 +196,30 @@ class UsersController extends Controller
         return redirect()->route('admin.users.index');
     }
 
+        /**
+     * Toggle active a image resource
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function active()
+    {
+        $user = User::where('id', request()->id)->select('id', 'first_name', 'last_name', 'active')->first();
+
+        if ($user->active == 1) {
+            $user->active = 0;
+            $message = 'desactivado';
+        } else {
+            $user->active = 1;
+            $message = 'activado';
+        }
+
+        $user->save();
+
+        session()->flash('message', "El usuario \"{$user->full_name()}\" ha sido {$message} exitosamente");
+
+        return redirect()->back();
+    }
+
     /**
      * Remove the specified user from storage
      *

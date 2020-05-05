@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmailRequest;
 use App\Mail\ContactForm;
+use App\Models\StudioGallery;
 use Illuminate\Support\Facades\Mail;
 
 //use Illuminate\Http\Request;
@@ -28,7 +29,10 @@ class PagesController extends Controller
      */
     public function studio()
     {
-        return view('front/pages/studio');
+        $images = StudioGallery::where('active', true)->orderBy('created_at', 'desc')->paginate(16);
+        $images->setPath('estudio/');
+
+        return view('front/pages/studio', compact('images'));
     }
 
     /**

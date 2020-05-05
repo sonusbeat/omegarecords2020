@@ -35,11 +35,7 @@
             <td>{{ $user->email }}</td>
             <td>{{ $user->type == 'admin' ? 'Administrador' : 'Registrado' }}</td>
             <td class="text-center">
-                @if($user->active)
-                    <span class="text-success fas fa-check"></span>
-                @else
-                    <span class="text-danger fas fa-times"></span>
-                @endif
+                {!! activate_resource('users', $user->id, $user->active) !!}
             </td>
             <td class="text-center">
                 <a class="btn btn-info" href="{{ route('admin.users.show', $user->id) }}"><span class="fas fa-info"></span></a>

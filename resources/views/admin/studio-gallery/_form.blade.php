@@ -47,7 +47,7 @@
 <div class="row">
     <div class="col-xs-12 col-md-6">
         @if(isset($image) && $image->image)
-            <img src="{{ asset("imagenes/studio_gallery/{$image->image}-medium.jpg") }}" class="img-fluid img-thumbnail" alt="{{ $image->image_alt }}">
+            <img src="{{ asset("imagenes/studio_gallery/{$image->image}-medium.jpg") }}" class="img-fluid" alt="{{ $image->image_alt }}">
         @else
             <img src="{{ asset('images/no_image.jpg') }}" class="img-fluid" alt="No Image">
         @endif

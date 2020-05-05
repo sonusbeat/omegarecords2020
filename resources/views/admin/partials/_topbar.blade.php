@@ -45,7 +45,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('admin.users.create') }}">Usuario</a>
-                        <a class="dropdown-item" href="#">Imagen</a>
+                        <a class="dropdown-item" href="{{ route('admin.studio_gallery.create') }}">Imagen</a>
                         </div>
                 </li>
             </ul>

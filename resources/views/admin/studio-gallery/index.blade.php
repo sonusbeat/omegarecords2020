@@ -35,11 +35,7 @@
                     <td>{{ $image->title }}</td>
                     <td>{{ $image->slug }}</td>
                     <td class="text-center">
-                        @if($image->active)
-                            <span class="text-success fas fa-check"></span>
-                        @else
-                            <span class="text-danger fas fa-times"></span>
-                        @endif
+                        {!! activate_resource('studio_gallery', $image->id, $image->active) !!}
                     </td>
                     <td class="text-center">
                         <a class="btn btn-info" href="{{ route('admin.studio_gallery.show', $image->id) }}"><span

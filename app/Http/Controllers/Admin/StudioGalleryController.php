@@ -26,7 +26,7 @@ class StudioGalleryController extends Controller
      */
     public function index()
     {
-        $images = StudioGallery::orderBy('title', 'asc')->get();
+        $images = StudioGallery::orderBy('created_at', 'desc')->get();
 
         return view('admin.studio-gallery.index', compact('images'));
     }
@@ -184,6 +184,30 @@ class StudioGalleryController extends Controller
 
         // Redirect to users list
         return redirect()->route('admin.studio_gallery.index');
+    }
+
+    /**
+     * Toggle active a image resource
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function active()
+    {
+        $image = StudioGallery::where('id', request()->id)->select('id', 'title', 'active')->first();
+
+        if ($image->active == 1) {
+            $image->active = 0;
+            $message = 'desactivada';
+        } else {
+            $image->active = 1;
+            $message = 'activada';
+        }
+
+        $image->save();
+
+        session()->flash('message', "La imagen \"{$image->title}\" ha sido {$message} exitosamente");
+
+        return redirect()->back();
     }
 
     /**
