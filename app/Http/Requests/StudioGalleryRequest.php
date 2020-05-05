@@ -27,8 +27,8 @@ class StudioGalleryRequest extends FormRequest
             'title' => 'required|between:4, 150',
             'slug' => 'required|between:4, 150',
             'description' => 'required|between:8, 200',
-            'image' => 'nullable|mimes:jpeg, jpg, png, gif|max:10000',
-            'image_alt' => 'nullable|between:8, 100',
+            'image' => 'required|mimes:jpeg, jpg, png, gif|max:10000',
+            'image_alt' => 'required|between:8, 100',
             'active' => 'nullable|boolean',
         ];
     }
@@ -50,10 +50,11 @@ class StudioGalleryRequest extends FormRequest
             'description.required' => 'La descripción de la imagen es obligatoria',
             'description.between' => 'El descripción de la imagen debe ser de :min a :max caracteres',
 
+            'image.required' => 'La imagen es obligatoria',
             'image.mimes' => 'Solo se permite imagenes en formato jpeg, jpg, png, gif',
             'image.max' => 'Solo se permite subir imagenes inferiores a 10 Megabytes',
 
-            'image_alt.required' => 'El texto alternativo de la imagen es obligatoria',
+            'image_alt.required' => 'El texto alternativo de la imagen es obligatorio',
             'image_alt.between' => 'El texto alternativo de la imagen debe ser de :min a :max caracteres',
 
             'active.boolean' => 'El valor para el campo activo debe ser 1 o 0',

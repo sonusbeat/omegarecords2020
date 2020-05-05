@@ -21,6 +21,7 @@
     <table class="table">
         <thead>
         <tr>
+            <th>Imagen</th>
             <th>Nombre</th>
             <th>Email</th>
             <th>Tipo</th>
@@ -31,13 +32,17 @@
         <tbody>
         @foreach($users as $user)
         <tr>
-            <td>{{ $user->full_name() }}</td>
-            <td>{{ $user->email }}</td>
-            <td>{{ $user->type == 'admin' ? 'Administrador' : 'Registrado' }}</td>
-            <td class="text-center">
+            <td>
+                <img src="{{ asset("/imagenes/usuarios/{$user->image}-thumbnail.jpg") }}"
+                     alt="{{ $user->image_alt }}" width="150">
+            </td>
+            <td class="align-middle">{{ $user->full_name() }}</td>
+            <td class="align-middle">{{ $user->email }}</td>
+            <td class="align-middle">{{ $user->type == 'admin' ? 'Administrador' : 'Registrado' }}</td>
+            <td class="align-middle" class="text-center">
                 {!! activate_resource('users', $user->id, $user->active) !!}
             </td>
-            <td class="text-center">
+            <td class="text-center align-middle">
                 <a class="btn btn-info" href="{{ route('admin.users.show', $user->id) }}"><span class="fas fa-info"></span></a>
                 <a class="btn btn-warning" href="{{ route('admin.users.edit', $user->id) }}"><span class="fas fa-edit"></span></a>
                 <form id="delete" action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display:inline">
