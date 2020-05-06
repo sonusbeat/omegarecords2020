@@ -30,7 +30,6 @@ class PagesController extends Controller
     public function studio()
     {
         $images = StudioGallery::where('active', true)->orderBy('created_at', 'desc')->paginate(16);
-        $images->setPath('estudio/');
 
         return view('front/pages/studio', compact('images'));
     }
