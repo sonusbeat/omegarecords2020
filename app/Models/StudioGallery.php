@@ -59,7 +59,7 @@ class StudioGallery extends Model
 
             'image.required' => 'La imagen es obligatoria',
             'image.mimes' => 'Solo se permite imagenes en formato jpeg, jpg, png, gif',
-            'image.max' => 'Solo se permite subir imagenes inferiores a 10 Megabytes',
+            'image.max' => 'Solo se permite subir imagenes inferiores a 12 Megabytes',
 
             'image_alt.required' => 'El texto alternativo de la imagen es obligatorio',
             'image_alt.between' => 'El texto alternativo de la imagen debe ser de :min a :max caracteres',

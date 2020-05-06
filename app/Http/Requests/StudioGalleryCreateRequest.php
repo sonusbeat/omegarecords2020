@@ -28,7 +28,7 @@ class StudioGalleryCreateRequest extends FormRequest
             'title' => 'required|between:4, 150',
             'slug' => 'required|between:4, 150',
             'description' => 'required|between:8, 200',
-            'image' => 'required|mimes:jpeg, jpg, png, gif|max:10000',
+            'image' => 'required|mimes:jpeg, jpg, png, gif|max:12000',
             'image_alt' => 'required|between:8, 100',
             'active' => 'nullable|boolean',
         ];
