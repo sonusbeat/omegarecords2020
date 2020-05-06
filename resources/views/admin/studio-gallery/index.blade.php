@@ -26,7 +26,6 @@
                 <th class="text-center">Posici&oacute;n</th>
                 <th class="text-center">Imagen</th>
                 <th class="text-center">T&iacute;tulo</th>
-                <th class="text-center">Slug</th>
                 <th class="text-center">Activado</th>
                 <th class="text-center">Acciones</th>
             </tr>
@@ -39,7 +38,6 @@
                         <img src="{{ asset("/imagenes/studio_gallery/{$image->image}-thumbnail.jpg") }}" alt="{{ $image->image_alt }}" width="150">
                     </td>
                     <td class="align-middle">{{ $image->title }}</td>
-                    <td class="align-middle">{{ $image->slug }}</td>
                     <td class="text-center align-middle">
                         {!! activate_resource('studio_gallery', $image->id, $image->active) !!}
                     </td>
