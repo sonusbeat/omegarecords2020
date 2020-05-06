@@ -29,7 +29,7 @@ class PagesController extends Controller
      */
     public function studio()
     {
-        $images = StudioGallery::where('active', true)->orderBy('created_at', 'desc')->paginate(16);
+        $images = StudioGallery::where('active', true)->orderBy('position', 'asc')->paginate(16);
 
         return view('front/pages/studio', compact('images'));
     }

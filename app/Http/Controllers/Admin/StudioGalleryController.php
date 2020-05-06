@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StudioGalleryRequest;
+use App\Http\Requests\StudioGalleryCreateRequest;
+use App\Http\Requests\StudioGalleryUpdateRequest;
 use App\Models\StudioGallery;
 use App\Traits\ImageTrait;
 use Intervention\Image\Facades\Image;
@@ -26,7 +27,7 @@ class StudioGalleryController extends Controller
      */
     public function index()
     {
-        $images = StudioGallery::orderBy('created_at', 'desc')->get();
+        $images = StudioGallery::orderBy('position')->paginate(8);
 
         return view('admin.studio-gallery.index', compact('images'));
     }
@@ -44,13 +45,16 @@ class StudioGalleryController extends Controller
     /**
      * Store a newly created image in storage.
      *
-     * @param StudioGalleryRequest $request
+     * @param StudioGalleryCreateRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StudioGalleryRequest $request)
+    public function store(StudioGalleryCreateRequest $request)
     {
         // Create user object
         $image = new StudioGallery($request->only('title', 'slug', 'description', 'active'));
+
+        // Set first position by default
+        $image->position = 1;
 
         if($request->hasFile('image')):
             $file = $request->file('image');
@@ -116,18 +120,19 @@ class StudioGalleryController extends Controller
     public function edit($id)
     {
         $image = StudioGallery::find($id);
+        $count = StudioGallery::count();
 
-        return view('admin.studio-gallery.edit', compact('image'));
+        return view('admin.studio-gallery.edit', compact('image', 'count'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param StudioGalleryRequest $request
+     * @param StudioGalleryUpdateRequest $request
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StudioGalleryRequest $request, $id)
+    public function update(StudioGalleryUpdateRequest $request, $id)
     {
         // Instantiate the image object
         $image = StudioGallery::find($id);

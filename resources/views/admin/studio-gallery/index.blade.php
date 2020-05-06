@@ -15,7 +15,7 @@
     <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
             <h3 class="card-title">Gestionar Imagenes</h3>
-            <a href="{{ route('admin.studio_gallery.create') }}" class="btn btn-primary"><span class="fas fa-file"></span></a>
+            <a href="{{ route('admin.studio_gallery.create') }}" class="btn btn-primary">A&ntilde;adir Imagen</a>
         </div>
     </div>
     <div class="card-body">
@@ -23,16 +23,18 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Imagen</th>
-                <th>T&iacute;tulo</th>
-                <th>Slug</th>
-                <th class="text-center">Activa</th>
+                <th class="text-center">Posici&oacute;n</th>
+                <th class="text-center">Imagen</th>
+                <th class="text-center">T&iacute;tulo</th>
+                <th class="text-center">Slug</th>
+                <th class="text-center">Activado</th>
                 <th class="text-center">Acciones</th>
             </tr>
             </thead>
             <tbody>
             @foreach($images as $image)
                 <tr>
+                    <td class="text-center align-middle">{{ $image->position }}</td>
                     <td>
                         <img src="{{ asset("/imagenes/studio_gallery/{$image->image}-thumbnail.jpg") }}" alt="{{ $image->image_alt }}" width="150">
                     </td>
@@ -43,7 +45,7 @@
                     </td>
                     <td class="text-center align-middle">
                         <a class="btn btn-info" href="{{ route('admin.studio_gallery.show', $image->id) }}"><span
-                                class="fas fa-info"></span></a>
+                                class="fas fa-eye"></span></a>
                         <a class="btn btn-warning" href="{{ route('admin.studio_gallery.edit', $image->id) }}"><span
                                 class="fas fa-edit"></span></a>
                         <form id="delete" action="{{ route('admin.studio_gallery.destroy', $image->id) }}" method="POST"
@@ -65,6 +67,10 @@
                 <a class="btn btn-primary btn-md btn-block font-weight-bold" href="{{ route('admin.studio_gallery.create') }}">Crear Imagen</a>
             </div>
         @endif
+
+        <div class="d-flex justify-content-center">
+            {{ $images->render() }}
+        </div>
     </div>
 </div>
 @endsection

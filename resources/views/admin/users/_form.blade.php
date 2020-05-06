@@ -146,6 +146,6 @@
 </div>
 
 <div class="form-group d-flex justify-content-between">
-    <a class="btn btn-primary" href="{{ route('admin.users.index') }}"><span class="fas fa-chevron-left"></span></a>
+    <a class="btn btn-primary" href="{{ route('admin.users.index') }}"><span class="fas fa-chevron-left"></span>&nbsp;Volver</a>
     <button type="submit" class="btn btn-success"><span class="fas fa-save"></span></button>
 </div>

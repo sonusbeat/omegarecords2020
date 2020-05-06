@@ -95,30 +95,51 @@
 </div>
 
 <hr>
+<div class="row">
+    <div class="col-sm-12 col-md-1">
+        @isset($count)
+        <!-- Position -->
+        <div class="form-group">
+                <label for="position">Posici&oacute;n:</label>
 
-<!-- Active -->
-<div class="form-group">
-    <div class="custom-control custom-checkbox">
-        <input type="hidden" name="active" value="0">
-        <input type="checkbox"
-               class="custom-control-input @error('active') is-invalid @enderror"
-               id="active"
-               name="active"
-               value="1"
-            {{ isset($image) && $image->active == 1 ? 'checked' : null }}
-            {{ old('active') == 1 ? 'checked' : null }}
-        >
-        <label class="custom-control-label" for="active">Activo</label>
+                <select id="cars" name="position" class="form-control">
+                    @for($i = 1; $i <= $count; $i++)
+                        @if($i < $count + 1)
+                            <option value="{{ $i }}" {{ ($image->position == $i) ? 'selected' : null }}>
+                                {{ $i }}
+                            </option>
+                        @endif
+                    @endfor
+                </select>
+            </div>
+        @endisset
+    </div>
+    <div class="col-sm-12 col-md-2 offset-md-9 d-flex justify-content-end align-items-center">
+        <!-- Active -->
+        <div class="form-group">
+            <div class="custom-control custom-checkbox">
+                <input type="hidden" name="active" value="0">
+                <input type="checkbox"
+                       class="custom-control-input @error('active') is-invalid @enderror"
+                       id="active"
+                       name="active"
+                       value="1"
+                    {{ isset($image) && $image->active == 1 ? 'checked' : null }}
+                    {{ old('active') == 1 ? 'checked' : null }}
+                >
+                <label class="custom-control-label" for="active">Activo</label>
 
-        @error('active')
-        <span class="invalid-feedback font-weight-bold mt-3" role="alert">
+                @error('active')
+                <span class="invalid-feedback font-weight-bold mt-3" role="alert">
             <strong>{{ $message }}</strong>
         </span>
-        @enderror
+                @enderror
+            </div>
+        </div>
     </div>
 </div>
 
 <div class="form-group d-flex justify-content-between">
-    <a class="btn btn-primary" href="{{ route('admin.studio_gallery.index') }}"><span class="fas fa-chevron-left"></span></a>
+    <a class="btn btn-primary" href="{{ route('admin.studio_gallery.index') }}"><span class="fas fa-chevron-left"></span>&nbsp;Volver</a>
     <button type="submit" class="btn btn-success"><span class="fas fa-save"></span></button>
 </div>

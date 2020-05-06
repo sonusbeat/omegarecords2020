@@ -4,8 +4,57 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "61d968348412c1f5e4b18443613ea8ad",
+    "content-hash": "a15bb739be23506e913487e398eed8f4",
     "packages": [
+        {
+            "name": "czim/laravel-listify",
+            "version": "2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/czim/laravel-listify.git",
+                "reference": "e3db53906c6f5635d0c517038afcdceabbe109c5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/czim/laravel-listify/zipball/e3db53906c6f5635d0c517038afcdceabbe109c5",
+                "reference": "e3db53906c6f5635d0c517038afcdceabbe109c5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.3"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.0|^4.0",
+                "phpunit/phpunit": "~7.0|~8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Czim\\Listify\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Coen Zimmerman",
+                    "email": "coen@pxlwidgets.com",
+                    "homepage": "https://github.com/czim",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Turns any model into a list. Rebuild of the popular Lookitsatravis Listify package.",
+            "homepage": "https://github.com/czim/laravel-listify",
+            "keywords": [
+                "eloquent",
+                "list",
+                "model",
+                "position"
+            ],
+            "time": "2019-10-29T14:34:06+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "v0.1.1",

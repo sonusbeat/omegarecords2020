@@ -15,7 +15,7 @@
     <div class="card-body">
         <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title">Gestionar Usuarios</h5>
-            <a href="{{ route('admin.users.create') }}" class="btn btn-primary"><span class="fas fa-file"></span></a>
+            <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Crear Usuario</a>
         </div>
     </div>
     <table class="table">
@@ -43,7 +43,7 @@
                 {!! activate_resource('users', $user->id, $user->active) !!}
             </td>
             <td class="text-center align-middle">
-                <a class="btn btn-info" href="{{ route('admin.users.show', $user->id) }}"><span class="fas fa-info"></span></a>
+                <a class="btn btn-info" href="{{ route('admin.users.show', $user->id) }}"><span class="fas fa-eye"></span></a>
                 <a class="btn btn-warning" href="{{ route('admin.users.edit', $user->id) }}"><span class="fas fa-edit"></span></a>
                 <form id="delete" action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display:inline">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">

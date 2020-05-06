@@ -27,7 +27,7 @@ Contamos con instalaciones tratadas acústicamente para grabar Audio Profesional
                 @foreach($row as $image)
                 <!-- .col -->
                 <div class="col-sm-6 col-md-3">
-                    <a data-lightbox="instalaciones" data-title="{{ $image->title }}" href="{{ asset("imagenes/studio_gallery/{$image->image}-large.jpg") }}">
+                    <a data-lightbox="instalaciones" data-title="{{ $image->description }}" href="{{ asset("imagenes/studio_gallery/{$image->image}-large.jpg") }}">
                         <picture>
                             <source srcset="{{ asset("imagenes/studio_gallery/{$image->image}-thumbnail.jpg") }}" media="(max-width: 960px)">
                             <source srcset="{{ asset("imagenes/studio_gallery/{$image->image}-medium.jpg") }}" media="(min-width: 961px)">

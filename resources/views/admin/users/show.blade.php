@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-between mt-4">
-            <a class="btn btn-primary" href="{{ route('admin.users.index') }}"><span class="fas fa-chevron-left"></span></a>
+            <a class="btn btn-primary" href="{{ route('admin.users.index') }}"><span class="fas fa-chevron-left"></span>&nbsp;Volver</a>
             <a class="btn btn-warning" href="{{ route('admin.users.edit', $user->id) }}"><span class="fas fa-edit"></span></a>
         </div>
     </div>
