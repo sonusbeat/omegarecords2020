@@ -36,32 +36,44 @@
         </a>
     </div>
 </div>
+
 <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-lg-6">
         <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Ultimas Imagenes</h4>
+            <div class="card-header">
+                <h2 class="card-title">Ultimas Imagenes</h2>
             </div>
-            <div class="comment-widgets scrollable">
+            <div class="card-body comment-widgets scrollable">
                 @foreach($images as $image)
                 <!-- Comment Row -->
-                <div class="d-flex flex-row comment-row m-t-0">
-                    <div class="p-2">
-                        <img src="{{ asset("imagenes/studio_gallery/{$image->image}-thumbnail.jpg") }}" alt="{{ $image->image_alt }}" width="250" class="img-thumbnail">
+                <div class="row p-sm-4 mb-3">
+                    <div class="col-12 col-lg-7">
+                        <h3 class="font-medium">{{ $image->title }}</h3>
+                        <img src="{{ asset("imagenes/studio_gallery/{$image->image}-thumbnail.jpg") }}" alt="{{ $image->image_alt }}" class="img-fluid img-rounded mb-4">
                     </div>
-                    <div class="comment-text w-100 d-flex flex-column justify-content-center">
-                        <h6 class="font-medium">{{ $image->title }}</h6>
+                    <div class="col-12 col-lg-5 d-flex flex-column justify-content-center">
                         <span class="m-b-15 d-block">{!! Str::limit($image->description, 100) !!}</span>
                         <div class="comment-footer">
-                            <span class="text-muted float-right">{{ $image->created_at->format('d/m/Y') }}</span>
+                            <div class="d-block d-md-none">
+                                <a class="btn btn-info btn-lg" href="{{ route('admin.studio_gallery.show', $image->id) }}">
+                                    <span class="fas fa-eye"></span>
+                                </a>
+                                <a class="btn btn-warning btn-lg float-right" href="{{ route('admin.studio_gallery.edit', $image->id) }}">
+                                    <span class="fas fa-edit"></span>
+                                </a>
+                                <hr>
+                            </div>
 
-                            <a class="btn btn-info btn-sm" href="{{ route('admin.studio_gallery.show', $image->id) }}">
-                                <span class="fas fa-eye"></span>
-                            </a>
+                            <div class="d-none d-md-block">
+                                <a class="btn btn-info btn-md" href="{{ route('admin.studio_gallery.show', $image->id) }}">
+                                    <span class="fas fa-eye"></span>
+                                </a>
+                                <a class="btn btn-warning btn-md" href="{{ route('admin.studio_gallery.edit', $image->id) }}">
+                                    <span class="fas fa-edit"></span>
+                                </a>
+                            </div>
 
-                            <a class="btn btn-warning btn-sm" href="{{ route('admin.studio_gallery.edit', $image->id) }}">
-                                <span class="fas fa-edit"></span>
-                            </a>
+                            <p class="mt-3 d-none d-lg-block text-muted"><span><b>Fecha:</b></span>&nbsp;{{ $image->created_at->format('d/m/Y') }}</p>
                         </div>
                     </div>
                 </div>
@@ -69,7 +81,7 @@
             </div>
         </div>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-lg-6">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Ultimos Usuarios</h4>

@@ -20,7 +20,7 @@
     </div>
     <div class="card-body">
         @if(isset($images) && $images->count())
-        <table class="table">
+            <table class="table d-none d-lg-block">
             <thead>
             <tr>
                 <th class="text-center">Posici&oacute;n</th>
@@ -59,6 +59,20 @@
             @endforeach
             </tbody>
         </table>
+            @foreach($images as $image)
+            <div class="d-block mb-3 d-lg-none">
+                <img class="img-fluid rounded mb-4" src="{{ asset("/imagenes/studio_gallery/{$image->image}-thumbnail.jpg") }}" alt="{{ $image->image_alt }}">
+                <div class="d-flex justify-content-between">
+                    <a href="{{ route('admin.studio_gallery.show', $image->id) }}" class="btn btn-lg btn-info"><span class="fas fa-eye"></span></a>
+                    <a href="{{ route('admin.studio_gallery.edit', $image->id) }}" class="btn btn-lg btn-warning"><span class="fas fa-edit"></span></a>
+                    <form id="delete" action="{{ route('admin.studio_gallery.destroy', $image->id) }}" method="POST" class="display-inline">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-lg"><span class="fas fa-trash"></span></button>
+                    </form>
+                </div>
+            </div>
+        @endforeach
         @else
             <div class="alert alert-warning text-center font-weight-bold">
                 Aun no hay imagenes
