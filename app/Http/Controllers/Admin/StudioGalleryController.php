@@ -72,17 +72,21 @@ class StudioGalleryController extends Controller
             Image::make($file->getRealPath())
                 ->resize(1280, null, function ($constrain) {
                     $constrain->aspectRatio();
-                })->save($path . $large_name);
+                })
+                ->save($path.$large_name);
 
             Image::make($file->getRealPath())
-                ->resize(780, null, function ($constrain) {
+                ->resize(768, null, function ($constrain) {
                     $constrain->aspectRatio();
-                })->save($path . $medium_name);
+                })
+                ->save($path.$medium_name);
 
             Image::make($file->getRealPath())
                 ->resize(480, null, function ($constrain) {
                     $constrain->aspectRatio();
-                })->save($path . $thumbnail_name);
+                })
+                ->crop('480', '360')
+                ->save($path.$thumbnail_name);
 
             $image->image = $image_name;
             $image->image_alt = $request->image_alt;
@@ -168,17 +172,21 @@ class StudioGalleryController extends Controller
             Image::make($file->getRealPath())
                 ->resize(1280, null, function ($constrain) {
                     $constrain->aspectRatio();
-                })->save($path.$large_name);
+                })
+                ->save($path.$large_name);
 
             Image::make($file->getRealPath())
-                ->resize(780, null, function ($constrain) {
+                ->resize(768, null, function ($constrain) {
                     $constrain->aspectRatio();
-                })->save($path.$medium_name);
+                })
+                ->save($path.$medium_name);
 
             Image::make($file->getRealPath())
                 ->resize(480, null, function ($constrain) {
                     $constrain->aspectRatio();
-                })->save($path.$thumbnail_name);
+                })
+                ->crop('480', '360')
+                ->save($path.$thumbnail_name);
 
             // Update image name into database
             $image->update(['image' => $image_name]);
