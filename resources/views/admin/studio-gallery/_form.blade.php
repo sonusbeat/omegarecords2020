@@ -29,7 +29,7 @@
     <div class="col-xs-12 col-md-6">
         <!-- Slug -->
         <div class="form-group">
-            <label for="last_name">Slug</label>
+            <label for="last_name">Nombre de la imagen sin extensi&oacute;n</label>
             <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug"
                    value="{{ isset($image) ? $image->slug : old('slug') }}">
 
@@ -140,6 +140,8 @@
 </div>
 
 <div class="form-group d-flex justify-content-between">
-    <a class="btn btn-primary" href="{{ route('admin.studio_gallery.index') }}"><span class="fas fa-chevron-left"></span>&nbsp;Volver</a>
-    <button type="submit" class="btn btn-success"><span class="fas fa-save"></span></button>
+    <a class="btn btn-primary btn-lg" href="{{ route('admin.studio_gallery.index') }}">
+        <span class="fas fa-chevron-left"></span>&nbsp;Volver
+    </a>
+    <button type="submit" class="btn btn-success btn-lg"><span class="fas fa-save"></span></button>
 </div>

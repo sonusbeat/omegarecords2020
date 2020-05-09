@@ -60,7 +60,7 @@ class StudioGalleryController extends Controller
             $file = $request->file('image');
             $date = date('Ymdims');
             $path = public_path().'/imagenes/studio_gallery/';
-            $file_name = $file->getClientOriginalName();
+            $file_name = $request->slug;
             $file_extension = $file->getClientOriginalExtension();
 
             $large_name = self::filenameTraitment($file_name, $file_extension, $date, 'large');
@@ -141,6 +141,36 @@ class StudioGalleryController extends Controller
         // Instantiate the image object
         $image = StudioGallery::find($id);
 
+        if ($image->slug != $request->slug) :
+            $image_large = self::filenameTraitment($request->slug, 'jpg', date('Ymdims'), 'large');
+            $image_medium = self::filenameTraitment($request->slug, 'jpg', date('Ymdims'), 'medium');
+            $image_thumbnail = self::filenameTraitment($request->slug, 'jpg', date('Ymdims'), 'thumbnail');
+
+            if(Storage::exists('/imagenes/studio_gallery/'.$image->image.'-large.jpg')) :
+                Storage::move(
+                    '/imagenes/studio_gallery/'.$image->image.'-large.jpg',
+                    '/imagenes/studio_gallery/'.$image_large
+                );
+            endif;
+
+            if(Storage::exists('/imagenes/studio_gallery/'.$image->image.'-medium.jpg')) :
+                Storage::move(
+                    '/imagenes/studio_gallery/'.$image->image.'-medium.jpg',
+                    '/imagenes/studio_gallery/'.$image_medium
+                );
+            endif;
+
+            if(Storage::exists('/imagenes/studio_gallery/'.$image->image.'-thumbnail.jpg')) :
+                Storage::move(
+                    '/imagenes/studio_gallery/'.$image->image.'-thumbnail.jpg',
+                    '/imagenes/studio_gallery/'.$image_thumbnail
+                );
+            endif;
+
+            // Update Database
+            $image->update(["image" => self::removeExtension($request->slug, 'jpg', date('Ymdims'))]);
+        endif;
+
         // Save to database
         $image->update($request->except('image'));
 
@@ -148,7 +178,7 @@ class StudioGalleryController extends Controller
             $file = $request->image;
             $date = date('Ymdims');
             $path = 'imagenes/studio_gallery/';
-            $file_name = $file->getClientOriginalName();
+            $file_name = $request->slug;
             $file_extension = $file->getClientOriginalExtension();
 
             $large_name = self::filenameTraitment($file_name, $file_extension, $date, 'large');

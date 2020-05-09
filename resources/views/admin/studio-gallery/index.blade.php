@@ -15,62 +15,37 @@
     <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
             <h3 class="card-title">Gestionar Imagenes</h3>
-            <a href="{{ route('admin.studio_gallery.create') }}" class="btn btn-primary">A&ntilde;adir Imagen</a>
+            <a href="{{ route('admin.studio_gallery.create') }}" class="btn btn-primary btn-lg">A&ntilde;adir Imagen</a>
         </div>
     </div>
     <div class="card-body">
         @if(isset($images) && $images->count())
-            <table class="table d-none d-lg-block">
-            <thead>
-            <tr>
-                <th class="text-center">Posici&oacute;n</th>
-                <th class="text-center">Imagen</th>
-                <th class="text-center">T&iacute;tulo</th>
-                <th class="text-center">Activado</th>
-                <th class="text-center">Acciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($images as $image)
-                <tr>
-                    <td class="text-center align-middle">{{ $image->position }}</td>
-                    <td>
-                        <img src="{{ asset("/imagenes/studio_gallery/{$image->image}-thumbnail.jpg") }}" alt="{{ $image->image_alt }}" width="150">
-                    </td>
-                    <td class="align-middle">{{ $image->title }}</td>
-                    <td class="text-center align-middle">
-                        {!! activate_resource('studio_gallery', $image->id, $image->active) !!}
-                    </td>
-                    <td class="text-center align-middle">
-                        <a class="btn btn-info" href="{{ route('admin.studio_gallery.show', $image->id) }}"><span
-                                class="fas fa-eye"></span></a>
-                        <a class="btn btn-warning" href="{{ route('admin.studio_gallery.edit', $image->id) }}"><span
-                                class="fas fa-edit"></span></a>
-                        <form id="delete" action="{{ route('admin.studio_gallery.destroy', $image->id) }}" method="POST"
-                              style="display:inline">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-danger"><span class="fas fa-trash"></span></button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-            @foreach($images as $image)
-            <div class="d-block mb-3 d-lg-none">
-                <img class="img-fluid rounded mb-4" src="{{ asset("/imagenes/studio_gallery/{$image->image}-thumbnail.jpg") }}" alt="{{ $image->image_alt }}">
-                <div class="d-flex justify-content-between mb-5">
-                    <a href="{{ route('admin.studio_gallery.show', $image->id) }}" class="btn btn-lg btn-info"><span class="fas fa-eye"></span></a>
-                    <a href="{{ route('admin.studio_gallery.edit', $image->id) }}" class="btn btn-lg btn-warning"><span class="fas fa-edit"></span></a>
-                    <form id="delete" action="{{ route('admin.studio_gallery.destroy', $image->id) }}" method="POST" class="display-inline">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" class="btn btn-danger btn-lg"><span class="fas fa-trash"></span></button>
-                    </form>
+
+            @foreach($images->chunk(3) as $row)
+            <div class="row mb-3">
+                @foreach($row as $image)
+                <div class="col-12 col-md-6 col-lg-4 border border-black bg-light p-4">
+                    <h4>{{ Str::limit($image->title, 26) }}</h4>
+
+                    <a href="{{ route('admin.studio_gallery.show', $image->id) }}" title="Ver Detalles">
+                        <img class="img-fluid rounded mb-4" src="{{ asset("/imagenes/studio_gallery/{$image->image}-thumbnail.jpg") }}" alt="{{ $image->image_alt }}">
+                    </a>
+
+                    <div class="d-flex justify-content-between mb-3">
+                        <a href="{{ route('admin.studio_gallery.show', $image->id) }}" class="btn btn-lg btn-info"><span class="fas fa-eye"></span></a>
+
+                        {!! activate_resource('studio_gallery', $image->id, $image->active, 'lg') !!}
+
+                        <a href="{{ route('admin.studio_gallery.edit', $image->id) }}" class="btn btn-lg btn-warning"><span class="fas fa-edit"></span></a>
+
+                        {!! delete_resource('studio_gallery', $image->id, $image->active, 'lg') !!}
+                    </div>
+
+                    <p class="text-right"><b>Posici&oacute;n:</b>&nbsp;{{ $image->position }}</p>
                 </div>
+                @endforeach
             </div>
-        @endforeach
+            @endforeach
         @else
             <div class="alert alert-warning text-center font-weight-bold">
                 Aun no hay imagenes
