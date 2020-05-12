@@ -24,7 +24,7 @@ class EquipmentController extends Controller
     {
         $equipment = Equipment::with(['equipment_category' => function($query) {
             $query->select(['id', 'name']);
-        }])->orderBy('created_at', 'desc')->paginate(8);
+        }])->orderBy('equipment_category_id', 'asc')->paginate(8);
 
         return view('admin.equipment.index', compact('equipment'));
     }
@@ -53,7 +53,7 @@ class EquipmentController extends Controller
         $equipment = Equipment::create($request->all());
 
         // Create session variable for message confirmation
-        session()->flash('message', "Se agreg&oacute; el equipo \"{$equipment->name}\" exitosamente");
+        session()->flash('message', "Se agregó el equipo \"{$equipment->name}\" exitosamente");
 
         // Redirect to users list
         return redirect()->route('admin.equipment.index');

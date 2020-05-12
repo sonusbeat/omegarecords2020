@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmailRequest;
 use App\Mail\ContactForm;
+use App\Models\EquipmentCategory;
 use App\Models\StudioGallery;
 use Illuminate\Support\Facades\Mail;
 
@@ -41,7 +42,14 @@ class PagesController extends Controller
      */
     public function equipment()
     {
-        return view('front/pages/equipment');
+        $categories = EquipmentCategory::with(['equipment' => function($query) {
+            $query->select(['id', 'equipment_category_id', 'name', 'active'])
+                ->where('active', 1)
+                ->orderBy('name', 'asc');
+        }])->select(['id', 'name', 'position'])
+            ->where('active', 1)->orderBy('position', 'asc')->get();
+
+        return view('front/pages/equipment', compact('categories'));
     }
 
     /**

@@ -83,6 +83,10 @@
             </table>
             @endforeach
         </div>
+
+        <div class="d-flex justify-content-center">
+            {{ $equipment->render() }}
+        </div>
     </div>
     @else
         <div class="card-body">

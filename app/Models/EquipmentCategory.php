@@ -21,4 +21,9 @@ class EquipmentCategory extends Model
      * @var array
      */
     protected $fillable = ['name', 'position', 'active'];
+
+    public function equipment()
+    {
+        return $this->hasMany(Equipment::class);
+    }
 }
