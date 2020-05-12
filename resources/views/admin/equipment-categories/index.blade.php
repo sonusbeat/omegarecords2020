@@ -45,9 +45,6 @@
                         </td>
 
                         <td class="text-center align-middle">
-                            <a class="btn btn-lg btn-info"
-                               href="{{ route('admin.equipment_categories.show', $category->id) }}"><span
-                                    class="fas fa-info"></span></a>
                             <a class="btn btn-lg btn-warning"
                                href="{{ route('admin.equipment_categories.edit', $category->id) }}"><span
                                     class="fas fa-edit"></span></a>
@@ -80,8 +77,6 @@
                 <tr>
                     <td colspan="2" class="bg-white">
                         <div class="d-flex justify-content-around">
-                            <a class="btn btn-lg btn-info" href="{{ route('admin.equipment_categories.show', $category->id) }}"><span class="fas fa-info"></span></a>
-
                             <a class="btn btn-lg btn-warning" href="{{ route('admin.equipment_categories.edit', $category->id) }}"><span class="fas fa-edit"></span></a>
 
                             {!! delete_resource('equipment_categories', $category->id, $category->active, 'lg') !!}

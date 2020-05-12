@@ -7,11 +7,11 @@
         <h3 class="text-center">Editar Equipo</h3>
     </div>
     <div class="card-body">
-        <form action="{{ route('admin.equipment_categories.update', $category->id) }}" method="POST">
+        <form action="{{ route('admin.equipment.update', $equipment->id) }}" method="POST">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="_method" value="PATCH">
 
-            @include('admin.equipment-categories._form')
+            @include('admin.equipment._form')
 
         </form>
     </div>
