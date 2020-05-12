@@ -105,3 +105,11 @@ Pongase en contacto con nostros para poder atender todas sus preguntas a travez 
   <div class="clearfix"></div><br><br>
 </div><!-- /.div-content .container -->
 @endsection
+
+@section('custom-scripts')
+    <script>
+        $(function () {
+            $("nav a:contains('CONTACTO')").parent().addClass('current');
+        });
+    </script>
+@endsection
