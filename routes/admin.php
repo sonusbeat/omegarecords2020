@@ -9,4 +9,6 @@ Route::namespace("Admin")
         Route::resource('users', 'UsersController');
         Route::patch('studio_gallery/{id}/active', 'StudioGalleryController@active')->name('studio_gallery.active');
         Route::resource('studio_gallery', 'StudioGalleryController');
+        Route::patch('equipment_categories/{id}/active', 'EquipmentCategoriesController@active')->name('equipment_categories.active');
+        Route::resource('equipment_categories', 'EquipmentCategoriesController');
 });

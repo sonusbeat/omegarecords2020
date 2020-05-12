@@ -25,6 +25,12 @@
                                 <i class="fas fa-images"></i><span class="hide-menu">Im&aacute;genes</span>
                             </a>
                         </li>
+
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.equipment_categories.index') }}" class="sidebar-link">
+                                <i class="fas fa-images"></i><span class="hide-menu">Categorias de Equipo</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
