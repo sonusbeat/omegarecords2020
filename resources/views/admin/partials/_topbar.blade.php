@@ -46,7 +46,9 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('admin.users.create') }}">Usuario</a>
                         <a class="dropdown-item" href="{{ route('admin.studio_gallery.create') }}">Imagen</a>
-                        </div>
+                        <a class="dropdown-item" href="{{ route('admin.equipment_categories.create') }}">Categor&iacute;a de Equipo</a>
+                        <a class="dropdown-item" href="{{ route('admin.equipment.create') }}">Equipo</a>
+                    </div>
                 </li>
             </ul>
             <!-- ============================================================== -->

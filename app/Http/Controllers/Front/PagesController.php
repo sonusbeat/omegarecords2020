@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmailRequest;
 use App\Mail\ContactForm;
+use App\Models\Equipment;
 use App\Models\EquipmentCategory;
 use App\Models\StudioGallery;
 use Illuminate\Support\Facades\Mail;

@@ -2,8 +2,7 @@
 
 @section('content')
 <div class="row">
-    <!-- Column -->
-    <div class="col-md-6 col-lg-4 col-xlg-3">
+    <div class="col-12 col-md-6 col-lg-3 col-xlg-3">
         <div class="card card-hover">
             <a href="{{ route('admin.dashboard') }}">
                 <div class="box bg-cyan text-center">
@@ -13,8 +12,7 @@
             </a>
         </div>
     </div>
-    <!-- Column -->
-    <div class="col-md-6 col-lg-4 col-xlg-3">
+    <div class="col-12 col-md-6 col-lg-3 col-xlg-3">
         <a href="{{ route('admin.users.index') }}">
             <div class="card card-hover">
                 <div class="box bg-warning text-center">
@@ -24,13 +22,22 @@
             </div>
         </a>
     </div>
-    <!-- Column -->
-    <div class="col-md-6 col-lg-4 col-xlg-3">
+    <div class="col-12 col-md-6 col-lg-3 col-xlg-3">
         <a href="{{ route('admin.studio_gallery.index') }}">
             <div class="card card-hover">
                 <div class="box bg-danger text-center">
                     <h1 class="font-light text-white"><i class="fas fa-images"></i></h1>
                     <h6 class="text-white">Imagenes</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 col-xlg-3">
+        <a href="{{ route('admin.equipment.index') }}">
+            <div class="card card-hover">
+                <div class="box bg-success text-center">
+                    <h1 class="font-light text-white"><i class="fas fa-microphone"></i></h1>
+                    <h6 class="text-white">Equipo</h6>
                 </div>
             </div>
         </a>
@@ -82,6 +89,22 @@
         </div>
     </div>
     <div class="col-12 col-lg-6">
+        <!-- Equipment -->
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Ultimo Equipo Agregado</h3>
+                <ul>
+                @foreach($equipment as $item)
+                    <li>
+                        <a class="text-info font-weight-bold" href="{{ route('admin.equipment.edit', $item->id) }}">
+                            {{ $item->name }}
+                        </a>
+                    </li>
+                @endforeach
+                </ul>
+            </div>
+        </div>
+        <!-- Users -->
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Ultimos Usuarios</h4>
