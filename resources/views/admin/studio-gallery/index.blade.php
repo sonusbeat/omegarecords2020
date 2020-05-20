@@ -32,7 +32,7 @@
                     </a>
 
                     <div class="d-flex justify-content-between mb-3">
-                        <a href="{{ route('admin.studio_gallery.show', $image->id) }}" class="btn btn-lg btn-info"><span class="fas fa-eye"></span></a>
+                        <a href="{{ route('admin.studio_gallery.show', $image->id) }}" class="btn btn-lg btn-info"><span class="fas fa-info"></span></a>
 
                         {!! activate_resource('studio_gallery', $image->id, $image->active, 'lg') !!}
 

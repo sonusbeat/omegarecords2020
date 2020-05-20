@@ -142,9 +142,10 @@ class StudioGalleryController extends Controller
         $image = StudioGallery::find($id);
 
         if ($image->slug != $request->slug) :
-            $image_large = self::filenameTraitment($request->slug, 'jpg', date('Ymdims'), 'large');
-            $image_medium = self::filenameTraitment($request->slug, 'jpg', date('Ymdims'), 'medium');
-            $image_thumbnail = self::filenameTraitment($request->slug, 'jpg', date('Ymdims'), 'thumbnail');
+            $date = date('Ymdims');
+            $image_large = self::filenameTraitment($request->slug, 'jpg', $date, 'large');
+            $image_medium = self::filenameTraitment($request->slug, 'jpg', $date, 'medium');
+            $image_thumbnail = self::filenameTraitment($request->slug, 'jpg', $date, 'thumbnail');
 
             if(Storage::exists('/imagenes/studio_gallery/'.$image->image.'-large.jpg')) :
                 Storage::move(
@@ -168,7 +169,7 @@ class StudioGalleryController extends Controller
             endif;
 
             // Update Database
-            $image->update(["image" => self::removeExtension($request->slug, 'jpg', date('Ymdims'))]);
+            $image->update(["image" => self::removeExtension($request->slug, 'jpg', $date)]);
         endif;
 
         // Save to database

@@ -16,7 +16,7 @@
     <div class="col-xs-12 col-md-6">
         <!-- Title -->
         <div class="form-group">
-            <label for="first_name">T&iacute;tulo</label>
+            <label for="title">T&iacute;tulo</label>
             <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ isset($image) ? $image->title : old('title') }}">
 
             @error('title')
@@ -29,7 +29,7 @@
     <div class="col-xs-12 col-md-6">
         <!-- Slug -->
         <div class="form-group">
-            <label for="last_name">Nombre de la imagen sin extensi&oacute;n</label>
+            <label for="slug">Nombre de la imagen sin extensi&oacute;n</label>
             <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug"
                    value="{{ isset($image) ? $image->slug : old('slug') }}">
 
@@ -85,9 +85,9 @@
 <!-- Description -->
 <div class="form-group">
     <label for="description">Descripci&oacute;n</label>
-    <textarea name="description" id="description" class="form-control @error('title') is-invalid @enderror" rows="5">{{ isset($image) ? $image->description : old('description') }}</textarea>
+    <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" rows="5">{{ isset($image) ? $image->description : old('description') }}</textarea>
 
-    @error('title')
+    @error('description')
     <span class="invalid-feedback font-weight-bold mt-3 ml-2" role="alert">
         <strong>{{ $message }}</strong>
     </span>

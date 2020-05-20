@@ -19,6 +19,10 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+
+         @yield('custom-styles')
+
+        @yield('header-scripts')
     </head>
 
     <body>
@@ -81,8 +85,6 @@
         <script src="{{ asset('admin/assets/extra-libs/sparkline/sparkline.js') }}"></script>
         <!--Wave Effects -->
         <script src="{{ asset('admin/dist/js/waves.js') }}"></script>
-        <!--Menu sidebar -->
-        <script src="{{ asset('admin/dist/js/sidebarmenu.js') }}"></script>
         <!--Custom JavaScript -->
         <script src="{{ asset('admin/dist/js/custom.min.js') }}"></script>
         <!--This page JavaScript -->
