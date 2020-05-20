@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-12 col-md-6 col-lg-3 col-xlg-3">
+    <div class="col-12 col-md-6 col-lg-4 col-xlg-4">
         <div class="card card-hover">
             <a href="{{ route('admin.dashboard') }}">
                 <div class="box bg-cyan text-center">
@@ -12,7 +12,7 @@
             </a>
         </div>
     </div>
-    <div class="col-12 col-md-6 col-lg-3 col-xlg-3">
+    <div class="col-12 col-md-6 col-lg-4 col-xlg-4">
         <a href="{{ route('admin.users.index') }}">
             <div class="card card-hover">
                 <div class="box bg-warning text-center">
@@ -22,7 +22,7 @@
             </div>
         </a>
     </div>
-    <div class="col-12 col-md-6 col-lg-3 col-xlg-3">
+    <div class="col-12 col-md-6 col-lg-4 col-xlg-4">
         <a href="{{ route('admin.studio_gallery.index') }}">
             <div class="card card-hover">
                 <div class="box bg-danger text-center">
@@ -32,7 +32,10 @@
             </div>
         </a>
     </div>
-    <div class="col-12 col-md-6 col-lg-3 col-xlg-3">
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-6 col-lg-4 col-xlg-4">
         <a href="{{ route('admin.equipment.index') }}">
             <div class="card card-hover">
                 <div class="box bg-success text-center">
@@ -42,10 +45,21 @@
             </div>
         </a>
     </div>
+    <div class="col-12 col-md-6 col-lg-4 col-xlg-4">
+        <a href="{{ route('admin.courses.index') }}">
+            <div class="card card-hover">
+                <div class="box bg-purple text-center">
+                    <h1 class="font-light text-white"><i class="fas fa-book"></i></h1>
+                    <h6 class="text-white">Cursos</h6>
+                </div>
+            </div>
+        </a>
+    </div>
 </div>
 
 <div class="row">
     <div class="col-12 col-lg-6">
+        <!-- Images -->
         <div class="card">
             <div class="card-header">
                 <h2 class="card-title">Ultimas Imagenes</h2>
@@ -92,7 +106,7 @@
         <!-- Equipment -->
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title">Ultimo Equipo Agregado</h3>
+                <h3 class="card-title">Ultimo Equipo</h3>
                 <ul>
                 @foreach($equipment as $item)
                     <li>
@@ -104,6 +118,54 @@
                 </ul>
             </div>
         </div>
+            <!-- Images -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Ultimos Cursos</h2>
+                </div>
+                <div class="card-body comment-widgets scrollable">
+                @foreach($courses as $course)
+                    <!-- Comment Row -->
+                        <div class="row p-sm-4 mb-3">
+                            <div class="col-12 col-lg-7">
+                                <h3 class="font-medium">{{ $course->title }}</h3>
+                                <img src="{{ asset("imagenes/courses/{$course->image}-thumbnail.jpg") }}"
+                                     alt="{{ $course->image_alt }}" class="img-fluid img-rounded mb-4">
+                            </div>
+                            <div class="col-12 col-lg-5 d-flex flex-column justify-content-center">
+                                <span class="m-b-15 d-block">{!! Str::limit($course->description, 100) !!}</span>
+                                <div class="comment-footer">
+                                    <div class="d-block d-md-none">
+                                        <a class="btn btn-info btn-lg"
+                                           href="{{ route('admin.courses.show', $course->id) }}">
+                                            <span class="fas fa-eye"></span>
+                                        </a>
+                                        <a class="btn btn-warning btn-lg float-right"
+                                           href="{{ route('admin.courses.edit', $course->id) }}">
+                                            <span class="fas fa-edit"></span>
+                                        </a>
+                                        <hr>
+                                    </div>
+
+                                    <div class="d-none d-md-block">
+                                        <a class="btn btn-info btn-md"
+                                           href="{{ route('admin.courses.show', $course->id) }}">
+                                            <span class="fas fa-eye"></span>
+                                        </a>
+                                        <a class="btn btn-warning btn-md"
+                                           href="{{ route('admin.courses.edit', $course->id) }}">
+                                            <span class="fas fa-edit"></span>
+                                        </a>
+                                    </div>
+
+                                    <p class="mt-3 d-none d-lg-block text-muted">
+                                        <span><b>Fecha:</b></span>&nbsp;{{ $course->created_at->format('d/m/Y') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         <!-- Users -->
         <div class="card">
             <div class="card-body">
