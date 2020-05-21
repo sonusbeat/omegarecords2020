@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CoursesRequest;
+use App\Http\Requests\TeachersCreateRequest;
+use App\Http\Requests\TeachersUpdateRequest;
 use App\Models\Course;
 use App\Models\Teacher;
 use App\Traits\ImageTrait;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Storage;
 
-class CoursesController extends Controller
+class TeachersController extends Controller
 {
     use ImageTrait;
 
@@ -22,9 +23,9 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        $courses = Course::orderBy('position')->paginate(8);
+        $teachers = Teacher::paginate(8);
 
-        return view('admin.courses.index', compact('courses'));
+        return view('admin.teachers.index', compact('teachers'));
     }
 
     /**
@@ -34,30 +35,25 @@ class CoursesController extends Controller
      */
     public function create()
     {
-        $teachers = $this->teachers();
-
-        return view('admin.courses.create', compact('teachers'));
+        return view('admin.teachers.create');
     }
 
     /**
      * Store a newly created courses in storage.
      *
-     * @param CoursesRequest $request
+     * @param TeachersCreateRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CoursesRequest $request)
+    public function store(TeachersCreateRequest $request)
     {
-        // Create user object
-        $course = new Course($request->except('_token', 'image', 'image_alt'));
-
-        // Set first position by default
-        $course->position = 1;
+        // Create teacher object
+        $teacher = new Teacher($request->except('_token', 'image', 'image_alt'));
 
         if($request->hasFile('image')):
             $file = $request->file('image');
             $date = date('Ymdims');
-            $path = public_path().'/imagenes/courses/';
-            $file_name = $request->permalink;
+            $path = public_path().'/imagenes/instructores/';
+            $file_name = $request->image_name;
             $file_extension = $file->getClientOriginalExtension();
 
             $large_name = self::filenameTraitment($file_name, 'jpg', $date, 'large');
@@ -88,31 +84,31 @@ class CoursesController extends Controller
                 ->encode('jpg', 100)
                 ->save($path.$thumbnail_name);
 
-            $course->image = $image_name;
-            $course->image_alt = $request->image_alt;
+            $teacher->image = $image_name;
+            $teacher->image_alt = $request->image_alt;
         endif;
 
         // Save to Database
-        $course->save();
+        $teacher->save();
 
         // Create session variable for message confirmation
-        session()->flash('message', "El curso \"{$course->title}\" ha sido creado exitosamente");
+        session()->flash('message', "El instructor \"{$teacher->full_name()}\" ha sido creado exitosamente");
 
         // Redirect to users list
-        return redirect()->route('admin.courses.index');
+        return redirect()->route('admin.teachers.index');
     }
 
     /**
      * Display the specified courses.
      *
-     * @param integer $id
+     * @param Teacher $teacher
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $course = Course::CourseWithTeacher($id);
+        $teacher = Teacher::TeacherWithCourses($id);
 
-        return view('admin.courses.show', compact('course'));
+        return view('admin.teachers.show', compact('teacher'));
     }
 
     /**
@@ -121,67 +117,61 @@ class CoursesController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit(Teacher $teacher)
     {
-        $data = [
-            'course' => $course,
-            'teachers' => $this->teachers(),
-            'count' => Course::count()
-        ];
-
-        return view('admin.courses.edit', $data);
+        return view('admin.teachers.edit', compact('teacher'));
     }
 
     /**
      * Update the specified courses in storage.
      *
-     * @param CoursesRequest $request
-     * @param \App\Models\Course $course
+     * @param TeachersUpdateRequest $request
+     * @param Teacher $teacher
      * @return \Illuminate\Http\Response
      */
-    public function update(CoursesRequest $request, Course $course)
+    public function update(TeachersUpdateRequest $request, Teacher $teacher)
     {
-        if ($course->permalink != $request->permalink) :
+        if ($teacher->image_name != $request->image_name) :
             $date = date('Ymdims');
-            $course_large = self::filenameTraitment($request->permalink, 'jpg', $date, 'large');
-            $course_medium = self::filenameTraitment($request->permalink, 'jpg', $date, 'medium');
-            $course_thumbnail = self::filenameTraitment($request->permalink, 'jpg', $date, 'thumbnail');
+            $teacher_large = self::filenameTraitment($request->image_name, 'jpg', $date, 'large');
+            $teacher_medium = self::filenameTraitment($request->image_name, 'jpg', $date, 'medium');
+            $teacher_thumbnail = self::filenameTraitment($request->image_name, 'jpg', $date, 'thumbnail');
 
-            if(Storage::exists('/imagenes/courses/'.$course->image.'-large.jpg')) :
+            if(Storage::exists('/imagenes/instructores/'.$teacher->image.'-large.jpg')) :
                 Storage::move(
-                    '/imagenes/courses/'.$course->image.'-large.jpg',
-                    '/imagenes/courses/'.$course_large
+                    '/imagenes/instructores/'.$teacher->image.'-large.jpg',
+                    '/imagenes/instructores/'.$teacher_large
                 );
             endif;
 
-            if(Storage::exists('/imagenes/courses/'.$course->image.'-medium.jpg')) :
+            if(Storage::exists('/imagenes/instructores/'.$teacher->image.'-medium.jpg')) :
                 Storage::move(
-                    '/imagenes/courses/'.$course->image.'-medium.jpg',
-                    '/imagenes/courses/'.$course_medium
+                    '/imagenes/instructores/'.$teacher->image.'-medium.jpg',
+                    '/imagenes/instructores/'.$teacher_medium
                 );
             endif;
 
-            if(Storage::exists('/imagenes/courses/'.$course->image.'-thumbnail.jpg')) :
+            if(Storage::exists('/imagenes/instructores/'.$teacher->image.'-thumbnail.jpg')) :
                 Storage::move(
-                    '/imagenes/courses/'.$course->image.'-thumbnail.jpg',
-                    '/imagenes/courses/'.$course_thumbnail
+                    '/imagenes/instructores/'.$teacher->image.'-thumbnail.jpg',
+                    '/imagenes/instructores/'.$teacher_thumbnail
                 );
             endif;
 
             // Update Database
-            $course->update([
-                "image" => self::removeExtension($request->permalink, 'jpg', $date)
+            $teacher->update([
+                "image" => self::removeExtension($request->image_name, 'jpg', $date)
             ]);
         endif;
 
         // Save to database
-        $course->update($request->except('image'));
+        $teacher->update($request->except('image'));
 
         if($request->hasFile('image')):
             $file = $request->image;
             $date = date('Ymdims');
-            $path = 'imagenes/courses/';
-            $file_name = $request->permalink;
+            $path = 'imagenes/instructores/';
+            $file_name = $request->image_name;
             $file_extension = $file->getClientOriginalExtension();
 
             $large_name = self::filenameTraitment($file_name, 'jpg', $date, 'large');
@@ -190,16 +180,16 @@ class CoursesController extends Controller
 
             $image_name = self::removeExtension($file_name, $file_extension, $date);
 
-            if (Storage::exists($path . $course->image . '-large.jpg')) :
-                Storage::delete($path . $course->image . '-large.jpg');
+            if (Storage::exists($path . $teacher->image . '-large.jpg')) :
+                Storage::delete($path . $teacher->image . '-large.jpg');
             endif;
 
-            if (Storage::exists($path . $course->image . '-medium.jpg')) :
-                Storage::delete($path . $course->image . '-medium.jpg');
+            if (Storage::exists($path . $teacher->image . '-medium.jpg')) :
+                Storage::delete($path . $teacher->image . '-medium.jpg');
             endif;
 
-            if (Storage::exists($path . $course->image . '-thumbnail.jpg')) :
-                Storage::delete($path . $course->image . '-thumbnail.jpg');
+            if (Storage::exists($path . $teacher->image . '-thumbnail.jpg')) :
+                Storage::delete($path . $teacher->image . '-thumbnail.jpg');
             endif;
 
             Image::make($file->getRealPath())
@@ -225,14 +215,14 @@ class CoursesController extends Controller
                 ->save($path.$thumbnail_name);
 
             // Update image name into database
-            $course->update(['image' => $image_name]);
+            $teacher->update(['image' => $image_name]);
         endif;
 
         // Create session variable for message confirmation
-        session()->flash('message', "El curso \"{$course->title}\" ha sido actualizado exitosamente");
+        session()->flash('message', "El curso \"{$teacher->full_name()}\" ha sido actualizado exitosamente");
 
         // Redirect to users list
-        return redirect()->route('admin.courses.index');
+        return redirect()->route('admin.teachers.index');
     }
 
     /**
@@ -242,20 +232,20 @@ class CoursesController extends Controller
      */
     public function active()
     {
-        $course = Course::where('id', request()->id)->select('id', 'title', 'active')->first();
+        $teacher = Teacher::where('id', request()->id)->select('id', 'first_name', 'last_name', 'active')->first();
 
-        if ($course->active == 1) {
-            $course->active = 0;
+        if ($teacher->active == 1) {
+            $teacher->active = 0;
             $message = 'desactivado';
         } else {
-            $course->active = 1;
+            $teacher->active = 1;
             $message = 'activado';
         }
 
         // Save to database
-        $course->save();
+        $teacher->save();
 
-        session()->flash('message', "El equipo \"{$course->title}\" ha sido {$message} exitosamente");
+        session()->flash('message', "El instructor \"{$teacher->full_name()}\" ha sido {$message} exitosamente");
 
         return redirect()->back();
     }
@@ -268,41 +258,31 @@ class CoursesController extends Controller
      */
     public function destroy($id)
     {
-        $course = Course::where('id', $id)
-            ->select(['id', 'title', 'image'])
+        $teacher = Teacher::where('id', $id)
+            ->select(['id', 'first_name', 'last_name', 'image'])
             ->first();
 
-        $path = 'imagenes/courses/';
+        $path = 'imagenes/instructores/';
 
         // Delete file from disk
-        if(Storage::exists($path.$course->image.'-large.jpg')) :
-            Storage::delete($path.$course->image.'-large.jpg');
+        if(Storage::exists($path.$teacher->image.'-large.jpg')) :
+            Storage::delete($path.$teacher->image.'-large.jpg');
         endif;
 
-        if(Storage::exists($path.$course->image.'-medium.jpg')) :
-            Storage::delete($path.$course->image.'-medium.jpg');
+        if(Storage::exists($path.$teacher->image.'-medium.jpg')) :
+            Storage::delete($path.$teacher->image.'-medium.jpg');
         endif;
 
-        if(Storage::exists($path.$course->image.'-thumbnail.jpg')) :
-            Storage::delete($path.$course->image.'-thumbnail.jpg');
+        if(Storage::exists($path.$teacher->image.'-thumbnail.jpg')) :
+            Storage::delete($path.$teacher->image.'-thumbnail.jpg');
         endif;
 
-        $course->delete();
+        $teacher->delete();
 
         // Create session variable for message confirmation
-        session()->flash('message', "el curso \"{$course->title}\" ha sido eliminado satisfactoriamente");
+        session()->flash('message', "El instructor \"{$teacher->full_name()}\" ha sido eliminado satisfactoriamente");
 
         // Redirect to users list
-        return redirect()->route('admin.courses.index');
-    }
-
-    /**
-     * Get all teachers
-     *
-     * @return Object
-     */
-    private function teachers()
-    {
-        return Teacher::select(['id', 'first_name', 'last_name'])->get();
+        return redirect()->route('admin.teachers.index');
     }
 }

@@ -25,7 +25,8 @@ class CoursesRequest extends FormRequest
      */
     public function rules(Route $route)
     {
-        $id = $route->courses ? $route->courses->id : null;
+        $id = $route->course ? $route->course->id : null;
+
         return [
             'teacher_id' => 'required|numeric',
             'title' => 'required|between: 4, 150',

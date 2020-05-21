@@ -15,5 +15,7 @@ yarn-error.log
 /database/seeds/UsersSeeder.php
 /public/imagenes/usuarios/
 /public/imagenes/studio_gallery/
+/public/imagenes/courses/
+/public/imagenes/instructores/
 /database/seeds/EquipmentCategoriesTableSeeder.php
 /database/seeds/EquipmentTableSeeder.php

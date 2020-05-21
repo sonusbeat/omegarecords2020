@@ -55,6 +55,16 @@
             </div>
         </a>
     </div>
+    <div class="col-12 col-md-6 col-lg-4 col-xlg-4">
+        <a href="{{ route('admin.teachers.index') }}">
+            <div class="card card-hover">
+                <div class="box bg-theme text-center">
+                    <h1 class="font-light text-white"><i class="fas fa-user"></i></h1>
+                    <h6 class="text-white">Instructores</h6>
+                </div>
+            </div>
+        </a>
+    </div>
 </div>
 
 <div class="row">

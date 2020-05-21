@@ -49,6 +49,14 @@
                         <i class="fas fa-book"></i><span class="hide-menu">Cursos</span>
                     </a>
                 </li>
+
+                <li class="sidebar-item {{ request()->segment(2) == 'teachers' ? 'selected' : '' }}">
+                    <a href="{{ route('admin.teachers.index') }}"
+                       class="sidebar-link {{ request()->segment(2) == 'teachers' ? 'active' : '' }}"
+                    >
+                        <i class="fas fa-user"></i><span class="hide-menu">Instructores</span>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

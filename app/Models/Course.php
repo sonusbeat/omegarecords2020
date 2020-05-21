@@ -59,4 +59,28 @@ class Course extends Model
     {
         $this->attributes['permalink'] = strtolower(str_replace(' ', '-', str_replace('.', '', $value)));
     }
+
+    /**
+     * Get the course with teacher for admin
+     *
+     * @param integer $id
+     * @return \Illuminate\Database\Eloquent\Builder|Model|object|null
+     */
+    public static function CourseWithTeacher($id)
+    {
+        return self::with(['teacher' => function($query) {
+            $query->select(['id', 'first_name', 'last_name'])->first();
+        }])
+        ->where('id', $id)->first();
+    }
+
+    /**
+     * Get the teacher that owns the course
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class);
+    }
 }

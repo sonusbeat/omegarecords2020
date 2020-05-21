@@ -15,4 +15,6 @@ Route::namespace("Admin")
         Route::resource('equipment', 'EquipmentController')->except('show');
         Route::patch('course/{id}/active', 'CoursesController@active')->name('courses.active');
         Route::resource('courses', 'CoursesController');
+        Route::patch('teacher/{id}/active', 'TeachersController@active')->name('teachers.active');
+        Route::resource('teachers', 'TeachersController');
 });

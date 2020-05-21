@@ -27,8 +27,19 @@
         </div>
         <!-- Teacher -->
         <div class="form-group">
-            <label for="title">Instructor</label>
-            <input type="text" class="form-control @error('teacher_id') is-invalid @enderror" id="teacher_id" name="teacher_id" value="{{ isset($course) ? $course->teacher_id : old('teacher_id') }}">
+            <label for="teacher_id">Instructor</label>
+
+            <select name="teacher_id" id="teacher_id" class="form-control @error('teacher_id') is-invalid @enderror">
+                <option disabled selected>Seleccione un instructor</option>
+                @foreach($teachers as $teacher)
+                <option value="{{ $teacher->id }}"
+                    {{ (old('teacher_id') == $teacher->id) ? 'selected' : null }}
+                    {{ (isset($course) && $course->teacher_id == $teacher->id) ? 'selected' : null }}
+                >
+                    {{ $teacher->full_name() }}
+                </option>
+                @endforeach
+            </select>
 
             @error('teacher_id')
             <span class="invalid-feedback font-weight-bold mt-3 ml-2" role="alert">
@@ -262,7 +273,7 @@
 </div>
 
 <div class="form-group d-flex justify-content-between">
-    <a class="btn btn-primary btn-lg" href="{{ URL::previous() }}">
+    <a class="btn btn-primary btn-lg" href="{{ route('admin.courses.index') }}">
         <span class="fas fa-chevron-left"></span>&nbsp;Volver
     </a>
     <button type="submit" class="btn btn-success btn-lg"><span class="fas fa-save"></span></button>

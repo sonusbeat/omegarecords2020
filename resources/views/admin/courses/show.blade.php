@@ -6,9 +6,9 @@
     <div class="card-body">
         <div class="media">
             @if($course->image)
-                <img src="{{ asset("imagenes/courses/{$course->image}-medium.jpg") }}" class="mr-4" alt="No Image" width="40%">
+                <img src="{{ asset("imagenes/courses/{$course->image}-medium.jpg") }}" class="mr-4 mb-2" alt="No Image" width="40%">
             @else
-                <img src="{{ asset("images/no_image.jpg") }}" class="mr-4" alt="No Image" width="40%">
+                <img src="{{ asset("images/no_image.jpg") }}" class="mr-4 mb-2" alt="No Image" width="40%">
             @endif
 
             <div class="media-body">
@@ -21,6 +21,14 @@
                     <tr>
                         <th><b>Enlace Permanente</b></th>
                         <td>{{ $course->permalink }}</td>
+                    </tr>
+                    <tr>
+                        <th><b>Instructor</b></th>
+                        <td>
+                            <a href="{{ route('admin.teachers.show', $course->teacher->id) }}" class="text-info">
+                                <b>{{ $course->teacher->full_name() }}</b>
+                            </a>
+                        </td>
                     </tr>
                     <tr>
                         <th><b>Nombre alternativo<br>de la imagen</b></th>
@@ -52,6 +60,8 @@
             </div>
         </div>
 
+        <hr>
+
         <section>
             <h3>Video</h3>
 
@@ -64,6 +74,8 @@
             </div>
         </section>
 
+        <hr>
+
         <section>
             <h3>Vision General</h3>
 
@@ -71,6 +83,8 @@
                 {!! $course->overview !!}
             </div>
         </section>
+
+        <hr>
 
         <section>
             <h3>Topics</h3>
@@ -80,6 +94,8 @@
             </div>
         </section>
 
+        <hr>
+
         <section>
             <h3>Content</h3>
 
@@ -87,6 +103,8 @@
                 {!! $course->content !!}
             </div>
         </section>
+
+        <hr>
 
         <div class="row">
             <div class="col-12 col-lg-4">
@@ -125,6 +143,8 @@
                 </section>
             </div>
         </div>
+
+        <hr>
 
         <div class="d-flex justify-content-between mt-4">
             <a class="btn btn-primary btn-lg" href="{{ URL::previous() }}">

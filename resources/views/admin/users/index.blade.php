@@ -43,7 +43,7 @@
                 {!! activate_resource('users', $user->id, $user->active) !!}
             </td>
             <td class="text-center align-middle">
-                <a class="btn btn-info" href="{{ route('admin.users.show', $user->id) }}"><span class="fas fa-eye"></span></a>
+                <a class="btn btn-info" href="{{ route('admin.users.show', $user->id) }}"><span class="fas fa-info"></span></a>
                 <a class="btn btn-warning" href="{{ route('admin.users.edit', $user->id) }}"><span class="fas fa-edit"></span></a>
                 <form id="delete" action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display:inline">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">

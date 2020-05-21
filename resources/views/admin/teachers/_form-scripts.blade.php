@@ -15,7 +15,7 @@
 <script>
   tinymce.init({
       selector: '.editor',
-      min_height: 300,
+      min_height: 500,
       plugins: 'code | lists | fullscreen | wordcount',
       toolbar: 'undo redo | removeformat | selectall | styleselect | bold italic | alignleft aligncenter alignright | bullist numlist | fullscreen code | wordcount |',
       menubar: false
