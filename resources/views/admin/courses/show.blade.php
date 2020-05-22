@@ -125,7 +125,7 @@
 
                     <div class="mb-4">
                         <span class="text-info font-weight-bold">
-                            {{ $course->start_date->format('M d Y') }}
+                            {{ ($course->start_date) ? $course->start_date->format('M d Y') : 'Sin Fecha' }}
                         </span>
                     </div>
                 </section>

@@ -64,6 +64,36 @@ class Course extends Model
     }
 
     /**
+     * Get the courses with teacher associated for public
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|Model|object|null
+     */
+    public static function CoursesWithTeacher()
+    {
+        return self::with(['teacher' => function($query) {
+            $query->select('id', 'first_name', 'last_name');
+        }])
+        ->select('teacher_id', 'title', 'permalink', 'description', 'image', 'image_alt', 'duration', 'start_date')
+        ->paginate(8);
+    }
+
+    /**
+     * Get the course with teacher associated for public
+     *
+     * @param string $permalink
+     * @return \Illuminate\Database\Eloquent\Builder|Model|object|null
+     */
+    public static function PublicCourseWithTeacher($permalink)
+    {
+        return self::with(['teacher' => function($query) {
+            $query->select(['id', 'first_name', 'last_name'])->first();
+        }])
+        ->where('permalink', $permalink)
+        ->select(['id', 'teacher_id', 'title', 'image', 'image_alt', 'description', 'video', 'overview', 'topics', 'content', 'price', 'start_date', 'duration', 'seo_title', 'seo_description', 'seo_robots'])
+        ->first();
+    }
+
+    /**
      * Get the course with teacher for admin
      *
      * @param integer $id

@@ -38,7 +38,7 @@ class CoursesRequest extends FormRequest
             ],
             'description' => 'required|min: 8',
             'video' => 'nullable|max: 250',
-            'price' => 'required|numeric',
+            'price' => 'nullable|numeric',
             'duration' => 'nullable|max:150',
             'overview' => 'required|min: 8',
             'topics' => 'required|min: 8',

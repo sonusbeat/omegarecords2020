@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
   <head>
-		<title>@yield('page-title') - Omega Records</title>
+		<title>@yield('page-title')</title>
 		<meta charset="utf-8">
 		<meta name = "format-detection" content="telephone=no">
 		<link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">

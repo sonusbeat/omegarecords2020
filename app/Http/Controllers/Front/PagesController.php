@@ -84,7 +84,7 @@ class PagesController extends Controller
      */
     public function course($permalink)
     {
-        $course = Course::where('permalink', $permalink)->first();
+        $course = Course::PublicCourseWithTeacher($permalink);
 
         return view('front/pages/course', compact('course'));
     }

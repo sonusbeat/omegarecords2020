@@ -47,7 +47,9 @@ Contamos con cursos musicales profesionales como manejo de software musical, apr
                     <div class="description">{{ $course->description }}</div>
                     <p><span><b>Instructor: </b>{{ $course->teacher->full_name() }}</span></p>
                     <p><span><b>Duraci&oacute;n: </b>{{ $course->duration }}</span></p>
+                    @if($course->start_date)
                     <p><span><b>Fecha de Inicio: </b>{{ $course->start_date->formatLocalized('%e de %B, %Y') }}</span></p>
+                    @endif
                 </div>
             </div>
             <!-- /.row -->
