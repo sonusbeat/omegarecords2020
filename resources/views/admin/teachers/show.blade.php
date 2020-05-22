@@ -81,6 +81,41 @@
 
         <hr>
 
+        <h2 class="mb-4">Seo</h2>
+
+        <div class="row">
+            <div class="col-12 col-lg-5">
+                <h3>T&iacute;tulo Seo</h3>
+                <div>{{ $teacher->seo_title }}</div>
+
+                <h3>Robots</h3>
+                @switch($teacher->seo_robots)
+                         @case('index, follow')
+                            <p>Indexar y Seguir</p>
+                            @break
+
+                         @case('noindex, follow')
+                            <p>No Indexar y Seguir</p>
+                            @break
+
+                        @case('index, nofollow')
+                            <p>Indexar y No Seguir</p>
+                            @break
+
+                        @case('noindex, nofollow')
+                            <p>No Indexar y No Seguir</p>
+                            @break
+                    @endswitch
+            </div>
+
+            <div class="col-12 col-lg-7">
+                <h3>Descripci&oacute;n Seo</h3>
+                <div>{{ $teacher->seo_description }}</div>
+            </div>
+        </div>
+
+        <hr>
+
         <h3>Cursos</h3>
 
         @foreach($teacher->courses->chunk(3) as $row)

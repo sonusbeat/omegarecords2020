@@ -24,6 +24,9 @@ class Teacher extends Model
         'twitter',
         'instagram',
         'youtube',
+        'seo_title',
+        'seo_description',
+        'seo_robots',
         'active',
     ];
 
@@ -125,6 +128,30 @@ class Teacher extends Model
             'youtube.unique' => 'El youtube ya existe, elija otro',
 
             'active.boolean' => 'Solo se permite 1 o 0',
+
+            'seo_title.required' => 'El título seo es obligatorio',
+            'seo_title.max' => 'El título debe ser menor a :max caracteres',
+
+            'seo_description.required' => 'La descripción seo es obligatoria',
+            'seo_description.max' => 'La descripción seo debe ser menor a :max carcateres',
+
+            'seo_robots.required' => 'La opción de robots es obligatoria',
+            'seo_robots.in' => 'La opción es incorrecta',
+        ];
+    }
+
+    /**
+     * Seo Options for form
+     *
+     * @return array
+     */
+    public static function seo_options()
+    {
+        return [
+            'Indexar y Seguir' => 'index, follow',
+            'No Indexar y Seguir' => 'noindex, follow',
+            'Indexar y No Seguir' => 'index, nofollow',
+            'No Index y No Seguir' => 'noindex, nofollow'
         ];
     }
 }

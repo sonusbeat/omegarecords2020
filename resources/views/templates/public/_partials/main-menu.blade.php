@@ -14,6 +14,9 @@
             <a href="{{ url('servicios') }}">SERVICIOS</a>
         </li>
         <li>
+            <a href="{{ url('cursos') }}">CURSOS</a>
+        </li>
+        <li>
             <a href="{{ url('contacto') }}">CONTACTO</a>
         </li>
 	</ul>

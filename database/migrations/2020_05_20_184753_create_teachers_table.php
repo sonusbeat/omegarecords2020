@@ -30,6 +30,16 @@ class CreateTeachersTable extends Migration
             $table->string('instagram')->nullable()->unique();
             $table->string('youtube')->nullable()->unique();
 
+            // SEO
+            $table->string('seo_title', 60);
+            $table->string('seo_description', 160);
+            $table->enum('seo_robots', [
+                'index, follow',
+                'noindex, follow',
+                'index, nofollow',
+                'noindex, nofollow',
+            ]);
+
             $table->boolean('active')->nullable()->default(0);
             $table->timestamps();
         });

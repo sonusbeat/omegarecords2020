@@ -35,7 +35,9 @@ class TeachersController extends Controller
      */
     public function create()
     {
-        return view('admin.teachers.create');
+        $seo_options = Teacher::seo_options();
+
+        return view('admin.teachers.create', compact('seo_options'));
     }
 
     /**
@@ -119,7 +121,12 @@ class TeachersController extends Controller
      */
     public function edit(Teacher $teacher)
     {
-        return view('admin.teachers.edit', compact('teacher'));
+        $data = [
+            'seo_options' => Teacher::seo_options(),
+            'teacher' => $teacher
+        ];
+
+        return view('admin.teachers.edit', $data);
     }
 
     /**

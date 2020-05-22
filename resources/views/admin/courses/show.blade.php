@@ -50,11 +50,11 @@
                     </tr>
                     <tr>
                         <th><b>Fecha de creaci&oacute;n</b></th>
-                        <td>{{ $course->created_at->format('M d Y, g:m:s a') }}</td>
+                        <td>{{ $course->created_at->formatLocalized('%e de %B del ') . $course->created_at->format('Y, g:m:s a') }}</td>
                     </tr>
                     <tr>
                         <th><b>Fecha de modificaci&oacute;n</b></th>
-                        <td>{{ $course->updated_at->format('M d Y, g:m:s a') }}</td>
+                        <td>{{ $course->updated_at->formatLocalized('%e de %B del ') . $course->updated_at->format('Y, g:m:s a') }}</td>
                     </tr>
                 </table>
             </div>
@@ -141,6 +141,41 @@
                         </span>
                     </div>
                 </section>
+            </div>
+        </div>
+
+        <hr>
+
+        <h2 class="mb-4">Seo</h2>
+
+        <div class="row">
+            <div class="col-12 col-lg-5">
+                <h3>T&iacute;tulo Seo</h3>
+                <div>{{ $course->seo_title }}</div>
+
+                <h3>Robots</h3>
+                @switch($course->seo_robots)
+                         @case('index, follow')
+                            <p>Indexar y Seguir</p>
+                            @break
+
+                         @case('noindex, follow')
+                            <p>No Indexar y Seguir</p>
+                            @break
+
+                        @case('index, nofollow')
+                            <p>Indexar y No Seguir</p>
+                            @break
+
+                        @case('noindex, nofollow')
+                            <p>No Indexar y No Seguir</p>
+                            @break
+                    @endswitch
+            </div>
+
+            <div class="col-12 col-lg-7">
+                <h3>Descripci&oacute;n Seo</h3>
+                <div>{{ $course->seo_description }}</div>
             </div>
         </div>
 

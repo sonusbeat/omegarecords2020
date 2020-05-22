@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-MX">
+<html lang="{{ app()->getLocale() }}">
   <head>
 		<title>@yield('page-title') - Omega Records</title>
 		<meta charset="utf-8">

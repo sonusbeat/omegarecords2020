@@ -34,9 +34,12 @@ class CoursesController extends Controller
      */
     public function create()
     {
-        $teachers = $this->teachers();
+        $data = [
+            'teachers' => $this->teachers(),
+            'seo_options' => Course::seo_options(),
+        ];
 
-        return view('admin.courses.create', compact('teachers'));
+        return view('admin.courses.create', $data);
     }
 
     /**
@@ -124,6 +127,7 @@ class CoursesController extends Controller
     public function edit(Course $course)
     {
         $data = [
+            'seo_options' => Course::seo_options(),
             'course' => $course,
             'teachers' => $this->teachers(),
             'count' => Course::count()

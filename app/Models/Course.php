@@ -31,10 +31,13 @@ class Course extends Model
         'overview',
         'topics',
         'content',
+        'position',
         'price',
         'start_date',
         'duration',
-        'position',
+        'seo_title',
+        'seo_description',
+        'seo_robots',
         'active',
     ];
 
@@ -82,5 +85,20 @@ class Course extends Model
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);
+    }
+
+    /**
+     * Seo Options for form
+     *
+     * @return array
+     */
+    public static function seo_options()
+    {
+        return [
+            'Indexar y Seguir' => 'index, follow',
+            'No Indexar y Seguir' => 'noindex, follow',
+            'Indexar y No Seguir' => 'index, nofollow',
+            'No Index y No Seguir' => 'noindex, nofollow'
+        ];
     }
 }

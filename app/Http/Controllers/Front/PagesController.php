@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmailRequest;
 use App\Mail\ContactForm;
+use App\Models\Course;
 use App\Models\Equipment;
 use App\Models\EquipmentCategory;
 use App\Models\StudioGallery;
@@ -37,7 +38,7 @@ class PagesController extends Controller
     }
 
     /**
-     * Display the equipo page
+     * Display the equipment page
      *
      * @return Response
      */
@@ -54,13 +55,38 @@ class PagesController extends Controller
     }
 
     /**
-     * Display the rates and services page
+     * Display the services and services page
      *
      * @return Response
      */
     public function services()
     {
         return view('front/pages/services');
+    }
+
+    /**
+     * Display the courses page
+     *
+     * @return Response
+     */
+    public function courses()
+    {
+        $courses = Course::CoursesWithTeacher();
+
+        return view('front/pages/courses', compact('courses'));
+    }
+
+    /**
+     * Display course page
+     *
+     * @param string $permalink
+     * @return Response
+     */
+    public function course($permalink)
+    {
+        $course = Course::where('permalink', $permalink)->first();
+
+        return view('front/pages/course', compact('course'));
     }
 
     /**

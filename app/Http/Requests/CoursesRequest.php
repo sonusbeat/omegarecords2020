@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\Route;
+use Illuminate\Validation\Rule;
 
 class CoursesRequest extends FormRequest
 {
@@ -43,6 +44,20 @@ class CoursesRequest extends FormRequest
             'topics' => 'required|min: 8',
             'content' => 'required|min: 8',
             'position' => 'nullable|numeric',
+
+            // SEO
+            'seo_title' => 'required|max:60',
+            'seo_description' => 'required|max:160',
+            'seo_robots' => [
+                'required',
+                Rule::in([
+                    'index, follow',
+                    'noindex, follow',
+                    'index, nofollow',
+                    'noindex, nofollow'
+                ])
+            ],
+
             'active' => 'nullable|boolean',
         ];
     }
@@ -85,6 +100,16 @@ class CoursesRequest extends FormRequest
             'content.min' => 'El contenido debe ser mínimo de :min caracateres',
 
             'position.numeric' => 'La posición debe ser un número',
+
+            // SEO
+            'seo_title.required' => 'El título seo es obligatorio',
+            'seo_title.max' => 'El título debe ser menor a :max caracteres',
+
+            'seo_description.required' => 'La descripción seo es obligatoria',
+            'seo_description.max' => 'La descripción seo debe ser menor a :max carcateres',
+
+            'seo_robots.required' => 'La opción de robots es obligatoria',
+            'seo_robots.in' => 'La opción es incorrecta',
 
             'active.boolean' => 'El valor debe ser 1 o 0',
         ];

@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Models\Teacher;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\Route;
+use Illuminate\Validation\Rule;
 
 class TeachersCreateRequest extends FormRequest
 {
@@ -56,6 +57,19 @@ class TeachersCreateRequest extends FormRequest
             'twitter' => 'nullable|between:20, 200|unique:teachers,twitter',
             'instagram' => 'nullable|between:20, 200|unique:teachers,instagram',
             'youtube' => 'nullable|between:20, 200|unique:teachers,youtube',
+
+            // SEO
+            'seo_title' => 'required|max:60',
+            'seo_description' => 'required|max:160',
+            'seo_robots' => [
+                'required',
+                Rule::in([
+                    'index, follow',
+                    'noindex, follow',
+                    'index, nofollow',
+                    'noindex, nofollow'
+                ])
+            ],
         ];
     }
 

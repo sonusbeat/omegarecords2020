@@ -186,6 +186,73 @@
     @enderror
 </div>
 
+<!-- .row -->
+<div class="row">
+    <!-- .col -->
+    <div class="col-12 col-lg-5">
+        <!-- Seo Title -->
+        <div class="form-group">
+            <label for="seo_title">T&iacute;tulo Seo</label>
+            <input type="text" class="form-control w-100 @error('seo_title') is-invalid @enderror" id="seo_title"
+                   name="seo_title"
+                   value="{{ isset($teacher) ? $teacher->seo_title : old('seo_title') }}">
+
+            <p id="title_count" class="d-none mt-2"><b></b></p>
+
+            @error('seo_title')
+            <span class="invalid-feedback font-weight-bold mt-3 ml-2" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+
+        <!-- Seo Robots -->
+        <div class="form-group">
+            <label for="seo_robots">Seo Robots</label>
+            <select name="seo_robots" id="seo_robots" class="form-control @error('seo_robots') is-invalid @enderror">
+                <option disabled selected>Seleccione una opci&oacute;n</option>
+                @foreach($seo_options as $key => $value)
+                    <option value="{{ $value }}"
+                        {{ ($value == old('seo_robots')) ? 'selected' : null }}
+                        {{ (isset($teacher) && ($teacher->seo_robots == $value)) ? 'selected' : null }}
+                    >{{ $key }}</option>
+                @endforeach
+            </select>
+
+            @error('seo_robots')
+            <span class="invalid-feedback font-weight-bold mt-3 ml-2" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+    </div>
+    <!-- /.col -->
+
+    <!-- .col -->
+    <div class="col-12 col-lg-7">
+        <!-- Seo Description -->
+        <div class="form-group">
+            <label for="seo_description">Descripci&oacute;n Seo</label>
+            <textarea class="form-control w-100
+                @error('seo_description') is-invalid @enderror"
+                      id="seo_description"
+                      name="seo_description"
+                      rows="5"
+            >{{ isset($teacher) ? $teacher->seo_description : old('seo_description') }}</textarea>
+
+            <p id="seo_description_count" class="d-none mt-2"><b></b></p>
+
+            @error('seo_description')
+            <span class="invalid-feedback font-weight-bold mt-3 ml-2" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->
+
 <div class="row">
     <div class="col-12 offset-lg-10 col-lg-2">
         <!-- Active -->
