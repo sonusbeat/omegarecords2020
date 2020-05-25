@@ -26,5 +26,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Carbon::setLocale('es');
         setlocale(LC_TIME , 'es_MX.UTF-8');
+
+        view()->share('coursesCount', \App\Models\Course::count());
     }
 }

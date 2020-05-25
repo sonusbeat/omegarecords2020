@@ -13,9 +13,11 @@
         <li>
             <a href="{{ url('servicios') }}">SERVICIOS</a>
         </li>
+        @if($coursesCount)
         <li>
             <a href="{{ url('cursos') }}">CURSOS</a>
         </li>
+        @endif
         <li>
             <a href="{{ url('contacto') }}">CONTACTO</a>
         </li>
