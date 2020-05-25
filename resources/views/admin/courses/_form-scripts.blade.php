@@ -16,8 +16,8 @@
   tinymce.init({
       selector: '.editor',
       min_height: 300,
-      plugins: 'code | lists | fullscreen | wordcount',
-      toolbar: 'undo redo | removeformat | selectall | styleselect | bold italic | alignleft aligncenter alignright | bullist numlist | fullscreen code | wordcount |',
+      plugins: 'code | lists | table | fullscreen | wordcount',
+      toolbar: 'undo redo | removeformat | selectall | styleselect | bold italic | alignleft aligncenter alignright | bullist numlist table | fullscreen code | wordcount |',
       menubar: false
   });
 </script>

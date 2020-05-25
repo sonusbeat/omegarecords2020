@@ -86,7 +86,7 @@ class Course extends Model
     public static function PublicCourseWithTeacher($permalink)
     {
         return self::with(['teacher' => function($query) {
-            $query->select(['id', 'first_name', 'last_name'])->first();
+            $query->select(['id', 'first_name', 'last_name', 'image', 'image_alt', 'biography'])->first();
         }])
         ->where('permalink', $permalink)
         ->select(['id', 'teacher_id', 'title', 'image', 'image_alt', 'description', 'video', 'overview', 'topics', 'content', 'price', 'start_date', 'duration', 'seo_title', 'seo_description', 'seo_robots'])

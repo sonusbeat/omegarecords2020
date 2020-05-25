@@ -9,6 +9,7 @@ use App\Models\Course;
 use App\Models\Equipment;
 use App\Models\EquipmentCategory;
 use App\Models\StudioGallery;
+use App\Models\Teacher;
 use Illuminate\Support\Facades\Mail;
 
 //use Illuminate\Http\Request;
@@ -87,6 +88,19 @@ class PagesController extends Controller
         $course = Course::PublicCourseWithTeacher($permalink);
 
         return view('front/pages/course', compact('course'));
+    }
+
+    /**
+     * Display teacher page
+     *
+     * @param integer $id
+     * @return Response
+     */
+    public function teacher($id)
+    {
+        $teacher = Teacher::TeacherWithCoursesForPublic($id);
+
+        return view('front/pages/teacher', compact('teacher'));
     }
 
     /**

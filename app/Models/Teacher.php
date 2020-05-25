@@ -52,6 +52,19 @@ class Teacher extends Model
     }
 
     /**
+     * Set username for the teacher
+     *
+     * @return string
+     */
+    public function username()
+    {
+        $first_name = strtolower($this->first_name);
+        $last_name = strtolower($this->last_name);
+
+        return str_replace(' ', '-', $first_name. '-' . $last_name);
+    }
+
+    /**
      * Get the courses that belongs to the teacher
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -59,6 +72,45 @@ class Teacher extends Model
     public function courses()
     {
         return $this->hasMany(Course::class);
+    }
+
+    /**
+     * Get Teacher for public page
+     *
+     * @param integer $id
+     * @return Query
+     */
+    public static function TeacherWithCoursesForPublic($id)
+    {
+        return self::where(['id' => $id, 'active' => true])
+            ->select(
+                'id',
+                'first_name',
+                'last_name',
+                'email',
+                'whatsapp',
+                'image',
+                'image_alt',
+                'biography',
+                'facebook',
+                'instagram',
+                'youtube',
+                'seo_title',
+                'seo_description',
+                'seo_robots'
+            )
+            ->with(['courses' => function($query) {
+                $query->select(
+                    'id',
+                    'teacher_id',
+                    'title',
+                    'permalink',
+                    'image',
+                    'image_alt'
+                )
+                ->where('active', true);
+            }])
+            ->first();
     }
 
     /**
