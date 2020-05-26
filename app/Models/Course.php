@@ -74,6 +74,7 @@ class Course extends Model
             $query->select('id', 'first_name', 'last_name');
         }])
         ->select('teacher_id', 'title', 'permalink', 'description', 'image', 'image_alt', 'duration', 'start_date')
+        ->where('active', true)
         ->paginate(8);
     }
 
