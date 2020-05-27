@@ -13,6 +13,7 @@ Contamos con cursos musicales profesionales como manejo de software musical, apr
     .description { margin: 20px 0; }
     .text-warning { color: #c83939; }
     .alert ul { list-style: disc; margin: 10px 0 0 25px; }
+    .font-weight-bold { font-weight: bold; }
 </style>
 @endsection
 
@@ -47,7 +48,7 @@ Contamos con cursos musicales profesionales como manejo de software musical, apr
                     </h3>
                     <div class="description">{{ $course->description }}</div>
                     <p><b>Instructor: </b>
-                        <a href="{{ route('front.teacher', ['id' => $teacher->id, 'username' => $teacher->full_name()]) }}" title="Visitar perfil de {{ $teacher->full_name() }}">{{ $course->teacher->full_name() }}</a>
+                        <a class="text-primary font-weight-bold" href="{{ route('front.teacher', ['id' => $course->teacher->id, 'username' => $course->teacher->username()]) }}" title="Visitar perfil de {{ $course->teacher->full_name() }}">{{ $course->teacher->full_name() }}</a>
                     </p>
                     @if($course->duration)
                     <p><b>Duraci&oacute;n: </b>{{ $course->duration }}</p>
