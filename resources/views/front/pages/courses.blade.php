@@ -46,10 +46,14 @@ Contamos con cursos musicales profesionales como manejo de software musical, apr
                         </a>
                     </h3>
                     <div class="description">{{ $course->description }}</div>
-                    <p><span><b>Instructor: </b>{{ $course->teacher->full_name() }}</span></p>
-                    <p><span><b>Duraci&oacute;n: </b>{{ $course->duration }}</span></p>
+                    <p><b>Instructor: </b>
+                        <a href="{{ route('front.teacher', ['id' => $teacher->id, 'username' => $teacher->full_name()]) }}" title="Visitar perfil de {{ $teacher->full_name() }}">{{ $course->teacher->full_name() }}</a>
+                    </p>
+                    @if($course->duration)
+                    <p><b>Duraci&oacute;n: </b>{{ $course->duration }}</p>
+                    @endif
                     @if($course->start_date)
-                    <p><span><b>Fecha de Inicio: </b>{{ $course->start_date->formatLocalized('%e de %B, %Y') }}</span></p>
+                    <p><b>Fecha de Inicio: </b>{{ $course->start_date->formatLocalized('%e de %B, %Y') }}</p>
                     @endif
                 </div>
             </div>
