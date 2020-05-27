@@ -53,10 +53,12 @@
                     </tr>
                     @endif
 
-                    <tr>
-                        <th>Duraci&oacute;n:</th>
-                        <td>{{ $course->duration }}</td>
-                    </tr>
+                    @if($course->start_date)
+                        <tr>
+                            <th>Duraci&oacute;n:</th>
+                            <td>{{ $course->duration }}</td>
+                        </tr>
+                    @endif
                 </table>
             </div>
             <!-- /.col -->
