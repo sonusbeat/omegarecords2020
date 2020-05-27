@@ -12,6 +12,7 @@ Contamos con cursos musicales profesionales como manejo de software musical, apr
 <style>
     .description { margin: 20px 0; }
     .text-warning { color: #c83939; }
+    .alert ul { list-style: disc; margin: 10px 0 0 25px; }
 </style>
 @endsection
 
@@ -61,9 +62,9 @@ Contamos con cursos musicales profesionales como manejo de software musical, apr
                 {{ $courses->render() }}
             </div>
         @else
-            <div class="alert alert-warning text-center">
-                <b>&iexcl; A&uacute;n no hay cursos en esta secci&oacute;n !</b>
-            </div>
+            <div class="alert alert-warning">
+                <p style="margin-top:0;">Contamos con cursos presenciales para el aprendizaje musical tales como: <b><i>Composición</i></b> y <b><i>Producción Musical</i></b>, ejecución de instrumentos musicales como: <b><i>Guitarra</i></b>, <b><i>Bajo</i></b>, <b><i>Batería</i></b>, <b><i>Teclados.</i></b> Así como también contamos con la docencia de software musical como: <b><i>Pro Tools</i></b>, <b><i>Logic</i></b>, <b><i>Ableton Live</i></b> entre otros.</p>
+            </div><!-- /.alert -->
         @endif
 	</div>
 	<!-- /.container -->
