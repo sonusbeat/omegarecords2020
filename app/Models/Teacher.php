@@ -93,6 +93,7 @@ class Teacher extends Model
                 'image_alt',
                 'biography',
                 'facebook',
+                'twitter',
                 'instagram',
                 'youtube',
                 'seo_title',

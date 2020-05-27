@@ -25,7 +25,7 @@
         <!-- .row -->
         <div class="row mt-40">
             <!-- .col -->
-            <div class="col-sm-12 col-lg-5">
+            <div class="col-sm-12 col-lg-4">
                 <img class="img-responsive"
                     src="{{ asset("imagenes/instructores/{$teacher->image}-medium.jpg") }}"
                     alt="{{ $teacher->image_alt }}"
@@ -34,48 +34,40 @@
             <!-- /.col -->
 
             <!-- .col -->
-            <div class="col-sm-12 col-lg-7">
+            <div class="col-sm-12 col-lg-8">
                 <h2 class="title">{{ $teacher->full_name() }}</h2><br>
 
-                <table class="table">
-                    @if($teacher->facebook)
-                    <tr>
-                        <th>Facebook:</th>
-                        <td>{{ $teacher->facebook }}</td>
-                    </tr>
-                    @endif
+                <!-- Biography -->
+                <section>{!! $teacher->biography !!}</section><br>
 
-                    @if($teacher->twitter)
-                    <tr>
-                        <th>Twitter:</th>
-                        <td>{{ $teacher->twitter }}</td>
-                    </tr>
-                    @endif
+                <section>
+                    <div class="text-right">
+                        @if($teacher->facebook)
+                            <a href="{{ $teacher->facebook }}" title="Visitar Facebook" target="_blank"><i class="text-primary fa fa-facebook-square fa-3x"></i></a>
+                            &nbsp;
+                        @endif
 
-                    @if($teacher->instagram)
-                    <tr>
-                        <th>Instagram:</th>
-                        <td>{{ $teacher->instagram }}</td>
-                    </tr>
-                    @endif
+                        @if($teacher->twitter)
+                            <a href="{{ $teacher->twitter }}" title="Visitar Twitter" target="_blank"><i class="text-info fa fa-twitter fa-3x"></i></a>&nbsp;
+                        @endif
 
-                    @if($teacher->youtube)
-                    <tr>
-                        <th>Youtube:</th>
-                        <td>{{ $teacher->youtube }}</td>
-                    </tr>
-                    @endif
-                </table>
+                        @if($teacher->instagram)
+                            <a href="{{ $teacher->instagram }}" title="Visitar Instagram" target="_blank"><i class="text-warning fa fa-instagram fa-3x"></i></a>
+                            &nbsp;
+                        @endif
+
+                        @if($teacher->youtube)
+                            <a href="{{ $teacher->youtube }}" title="Visitar Youtube" target="_blank"><i class="text-danger fa fa-youtube fa-3x"></i></a>
+                            &nbsp;
+                        @endif
+                    </div>
+                </section>
             </div>
             <!-- /.col -->
         </div>
         <!-- /.row -->
-        <br>
 
-        <section>
-            <h3>Biograf&iacute;a:</h3>
-            <td>{!! $teacher->biography !!}</td>
-        </section>
+        <br>
 
         @if($teacher->courses->count())
         <section>

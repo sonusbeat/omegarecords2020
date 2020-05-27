@@ -99,16 +99,12 @@
 
             <!-- .col -->
             <div class="col-sm-12 col-lg-6">
-                <h3>Temas</h3>
+                <h3>Aprenderás</h3>
                 <div>{!! $course->topics !!}</div>
             </div>
             <!-- /.col -->
         </div>
         <!-- /.row -->
-
-        <h3>Contenido</h3><br>
-        <div>{!! $course->content !!}</div>
-
 	</div>
 	<!-- /.container -->
 
