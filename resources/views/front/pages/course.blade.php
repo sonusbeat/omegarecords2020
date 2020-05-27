@@ -14,6 +14,7 @@
     .mt-40 { margin-top: 40px; }
     .mt-20 { margin-top: 20px; }
     h4:first-child { margin-top: 0; }
+    .font-weight-bold { font-weight: bold; }
 </style>
 @endsection
 
@@ -70,48 +71,30 @@
         <div>{!! $course->video !!}</div>
         @endif
 
-        <h2 class="title mt-20">Instructor:</h2>
-
         <div class="mt-20 row">
-            <div class="col-sm-4 col-lg-3">
-                <a href="{{ route('front.teacher', ['id' => $course->teacher->id, 'username' => $course->teacher->username()]) }}">
-                    <img class="img-responsive img-rounded"
-                         src="{{ asset("imagenes/instructores/{$course->teacher->image}-thumbnail.jpg") }}"
-                         alt="{{ $course->teacher->image_alt }}">
-                </a>
+            <div class="col-sm-12 col-lg-2">
+                <h2 class="title">Instructor:</h2>
+                <p><a href="{{ route('front.teacher', ['id' => $course->teacher->id, 'username' => $course->teacher->username()]) }}">
+                        <img class="img-responsive img-rounded"
+                             src="{{ asset("imagenes/instructores/{$course->teacher->image}-thumbnail.jpg") }}"
+                             alt="{{ $course->teacher->image_alt }}">
+                        <p style="margin-top: 10px; font-size: 12px;"
+                           class="text-info font-weight-bold">{{ $course->teacher->full_name() }}</p>
+                    </a></p>
             </div><!-- /.col -->
-            <div class="col-sm-12 col-lg-9">
-                <h4>
-                    <a class="link" href="{{ route('front.teacher', ['id' => $course->teacher->id, 'username' => $course->teacher->username()]) }}">
-                        {{ $course->teacher->full_name() }}
-                    </a>
-                </h4>
-                {!! $course->teacher->biography !!}
+            <div class="col-sm-12 col-lg-6">
+                <h2 class="title">Vision General</h2>
+                <div>{!! $course->overview !!}</div>
+            </div><!-- /.col -->
+            <div class="col-sm-12 col-lg-4">
+                <h2 class="title">Aprenderás</h2>
+                <div>{!! $course->topics !!}</div>
             </div><!-- /.col -->
         </div><!-- /.row -->
 
-        <!-- .row -->
-        <div class="row mt-20">
-            <!-- .col -->
-            <div class="col-sm-12 col-lg-6">
-                <h3>Vision General</h3>
-                <div>{!! $course->overview !!}</div>
-            </div>
-            <!-- /.col -->
-
-            <!-- .col -->
-            <div class="col-sm-12 col-lg-6">
-                <h3>Aprenderás</h3>
-                <div>{!! $course->topics !!}</div>
-            </div>
-            <!-- /.col -->
-        </div>
-        <!-- /.row -->
+        <br>
 	</div>
 	<!-- /.container -->
-
-	<br>
-
 </div>
 <!-- /.div-content -->
 @endsection
