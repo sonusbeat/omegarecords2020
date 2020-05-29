@@ -85,7 +85,9 @@ class StudioGalleryController extends Controller
                 ->resize(480, null, function ($constrain) {
                     $constrain->aspectRatio();
                 })
-                ->crop('480', '360')
+                ->fit('480', '320', function($constraint) {
+                    $constraint->upsize();
+                })
                 ->save($path.$thumbnail_name);
 
             $image->image = $image_name;
@@ -216,7 +218,9 @@ class StudioGalleryController extends Controller
                 ->resize(480, null, function ($constrain) {
                     $constrain->aspectRatio();
                 })
-                ->crop('480', '360')
+                ->fit('480', '320', function($constraint) {
+                    $constraint->upsize();
+                })
                 ->save($path.$thumbnail_name);
 
             // Update image name into database

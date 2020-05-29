@@ -82,7 +82,9 @@ class TeachersController extends Controller
                 ->resize(480, null, function ($constrain) {
                     $constrain->aspectRatio();
                 })
-                ->crop('480', '360')
+                ->fit('480', '320', function($constraint) {
+                    $constraint->upsize();
+                })
                 ->encode('jpg', 100)
                 ->save($path.$thumbnail_name);
 
@@ -214,10 +216,12 @@ class TeachersController extends Controller
                 ->save($path.$medium_name);
 
             Image::make($file->getRealPath())
-                ->resize(480, null, function ($constrain) {
-                    $constrain->aspectRatio();
+                ->resize(480, null, function ($constraint) {
+                    $constraint->aspectRatio();
                 })
-                ->crop('480', '360')
+                ->fit('480', '320', function($constraint) {
+                    $constraint->upsize();
+                })
                 ->encode('jpg', 100)
                 ->save($path.$thumbnail_name);
 

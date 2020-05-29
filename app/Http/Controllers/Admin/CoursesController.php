@@ -87,7 +87,9 @@ class CoursesController extends Controller
                 ->resize(480, null, function ($constrain) {
                     $constrain->aspectRatio();
                 })
-                ->crop('480', '360')
+                ->fit('480', '320', function($constraint) {
+                    $constraint->upsize();
+                })
                 ->encode('jpg', 100)
                 ->save($path.$thumbnail_name);
 
@@ -224,7 +226,9 @@ class CoursesController extends Controller
                 ->resize(480, null, function ($constrain) {
                     $constrain->aspectRatio();
                 })
-                ->crop('480', '360')
+                ->fit('480', '320', function($constraint) {
+                    $constraint->upsize();
+                })
                 ->encode('jpg', 100)
                 ->save($path.$thumbnail_name);
 
