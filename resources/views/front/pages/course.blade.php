@@ -15,6 +15,24 @@
     .mt-20 { margin-top: 20px; }
     h4:first-child { margin-top: 0; }
     .font-weight-bold { font-weight: bold; }
+
+    .video-responsive {
+        height: 0;
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        padding-top: 30px;
+        position: relative;
+    }
+
+    .video-responsive iframe,
+    .video-responsive object,
+    .video-responsive embed {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
 </style>
 @endsection
 
@@ -68,7 +86,7 @@
         <br>
 
         @if($course->video)
-        <div>{!! $course->video !!}</div>
+        <div class="video-responsive">{!! $course->video !!}</div>
         @endif
 
         <div class="mt-20 row">
