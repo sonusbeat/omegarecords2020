@@ -92,7 +92,6 @@ Somos un Estudio de Grabación en Guadalajara Jalisco Mexico. Ofrecemos Servicio
 
 					<div class="wrapper hline2">
 						<div class="banner1">
-							<i class="fa fa-thumbs-up fa-4x"></i>
 							<div class="box">
 								<h3 class="objetives">Preferencia</h3>
 								<p class="color2">
@@ -105,7 +104,6 @@ Somos un Estudio de Grabación en Guadalajara Jalisco Mexico. Ofrecemos Servicio
 
 					<div class="wrapper hline2">
 						<div class="banner1">
-							<i class="fa fa-check fa-4x"></i>
 							<div class="box">
 								<h3 class="objetives">Servicio</h3>
 								<p class="color2">
@@ -119,7 +117,6 @@ Somos un Estudio de Grabación en Guadalajara Jalisco Mexico. Ofrecemos Servicio
 
 					<div class="wrapper hline2">
 						<div class="banner1">
-							<i class="fa fa-signal fa-4x"></i>
 							<div class="box">
 								<h3 class="objetives">Calidad</h3>
 								<p class="color2">

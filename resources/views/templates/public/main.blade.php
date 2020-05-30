@@ -46,7 +46,6 @@
       @endif
 	</head>
 	<body>
-
 		<h1 class="hidden-title">Omega Records Estudio de Grabación Musical</h1>
 
 		<div id="back-top"></div><!-- button back top-->
@@ -74,6 +73,9 @@
 
 			@include('templates/public/_partials/footer')
 		</div><!-- .main -->
+
+        @include('front.partials.facebook-messenger')
+        @include('front.partials.whatsapp')
 
 		<!-- Application Scripts -->
         <script src="{{ asset('js/front-scripts.min.js') }}"></script>

@@ -20,27 +20,25 @@
 			  	<ul class="soc_icons">
 						<li>
 							<a href="https://www.facebook.com/OmegaRecordsMexico/" title="Facebook" target="_blank">
-								<i class="fa fa-facebook fa-lg"></i>
+								<i class="fab fa-facebook fa-2x"></i>
 							</a>
 						</li>
 						<li>
 							<a href="https://twitter.com/omega_records" title="Twitter" target="_blank">
-								<i class="fa fa-twitter fa-lg"></i>
+								<i class="fab fa-twitter fa-2x"></i>
 							</a>
 						</li>
 						<li>
 							<a href="https://www.youtube.com/user/omegarecordsgdl" title="Youtube" target="_blank">
-								<i class="fa fa-youtube fa-lg"></i>
+								<i class="fab fa-youtube fa-2x"></i>
 							</a>
 						</li>
 						<li>
 							<a href="https://soundcloud.com/omegarecordsestudio" title="Soundcloud" target="_blank">
-								<i class="fa fa-soundcloud fa-lg"></i>
+								<i class="fab fa-soundcloud fa-2x"></i>
 							</a>
 						</li>
 					</ul>
-					<p><span class="color4">Omega Records</span> &copy; {{ date('Y') }}.</p>
-
 			  </div>
 		 </div>
 	</div>

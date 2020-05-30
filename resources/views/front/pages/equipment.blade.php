@@ -111,7 +111,7 @@
             <div class="wrapper hline2">
                 <div class="media">
                     <div class="media-left media-middle">
-                        <spam class="fa fa-apple fa-4x"></spam>
+                        <spam class="fab fa-apple fa-4x"></spam>
                     </div><!-- / .media-right .media-middle -->
                     <div class="media-right media-middle">
                         <h3 class="color1">Equipo de Computo</h3>
