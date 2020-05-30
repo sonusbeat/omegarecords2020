@@ -1,3 +1,4 @@
+@if(env('APP_ENV') == 'production')
 <!-- FACEBOOK MESSENGER -->
 <!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>
@@ -26,3 +27,4 @@
      logged_in_greeting="¿Hola en que te podemos ayudar?"
      logged_out_greeting="¿Hola en que te podemos ayudar?">
 </div>
+@endif
