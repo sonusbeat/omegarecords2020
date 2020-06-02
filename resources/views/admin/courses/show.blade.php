@@ -87,7 +87,7 @@
         <hr>
 
         <section>
-            <h3>Topics</h3>
+            <h3>Que aprenderás</h3>
 
             <div class="mb-2">
                 {!! $course->topics !!}
@@ -97,7 +97,7 @@
         <hr>
 
         <section>
-            <h3>Content</h3>
+            <h3>Contenido del curso</h3>
 
             <div class="mb-2">
                 {!! $course->content !!}
