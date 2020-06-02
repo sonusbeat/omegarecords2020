@@ -15,7 +15,8 @@ class CreateCourseMessagesTable extends Migration
     {
         Schema::create('course_messages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('course_id')->index();
+            $table->unsignedBigInteger('course_id');
+            $table->foreign('course_id')->references('id')->on('courses');
             $table->string('name', 150);
             $table->string('email');
             $table->integer('whatsapp', 20)->nullable();
