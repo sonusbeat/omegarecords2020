@@ -12,10 +12,6 @@
 
 {{ $form['whatsapp'] ? $form['whatsapp'] : 'Prefirió no enviarlo' }}
 
-## Celular
-
-{{ $form['whatsapp'] }}
-
 ## Mensaje
 
 {{ $form['message'] }}
