@@ -78,19 +78,19 @@
     'normal' => $rootDir . '/lib/fonts/DejaVuSerif',
   ),
   'comfortaa-regular' => array(
-    'normal' => $fontDir . '/comfortaa-regular-normal_3629bfd16aa6a9792ac30c5de84ff593',
+    'normal' => $fontDir . '/comfortaa-regular-normal_595ccef5078b87a60fdb6d5879f1b23c',
   ),
   'comfortaa-bold' => array(
-    'normal' => $fontDir . '/comfortaa-bold-normal_33d2d00686fff73846a5ef0f07f3a2aa',
+    'normal' => $fontDir . '/comfortaa-bold-normal_ee2d21ba3dc2450c1cad27fa718b9d6d',
   ),
   'roboto-black' => array(
     'normal' => $fontDir . '/roboto-black-normal_4b3a8274a49d3f0f29cabb4d096379f5',
   ),
   'roboto-bold' => array(
-    'normal' => $fontDir . '/roboto-bold-normal_0b7adfb97b691cf093949b25b0e05d55',
+    'normal' => $fontDir . '/roboto-bold-normal_4b3a8274a49d3f0f29cabb4d096379f5',
     '900' => $fontDir . '/roboto-bold-900_4b3a8274a49d3f0f29cabb4d096379f5',
   ),
   'roboto-medium' => array(
-    'normal' => $fontDir . '/roboto-medium-normal_1b37904d6ed1891aaebaff1322dd718d',
+    'normal' => $fontDir . '/roboto-medium-normal_df0a060d2b3c5432a7b03d2e3c6f012a',
   ),
 ) ?>

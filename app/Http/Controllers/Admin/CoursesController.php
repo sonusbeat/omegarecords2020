@@ -7,7 +7,7 @@ use App\Http\Requests\CoursesRequest;
 use App\Models\Course;
 use App\Models\Teacher;
 use App\Traits\ImageTrait;
-use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 use Intervention\Image\Facades\Image;
 use Storage;
 
@@ -96,6 +96,11 @@ class CoursesController extends Controller
             $course->image = $image_name;
             $course->image_alt = $request->image_alt;
         endif;
+
+        $filename = str_replace(' ', '-', strtolower($course->title)).'.pdf';
+        $pdf = PDF::loadView('pdf.course-content', compact('course'));
+
+        $pdf->save(public_path('pdf/'.$filename));
 
         // Save to Database
         $course->save();
@@ -236,6 +241,14 @@ class CoursesController extends Controller
             $course->update(['image' => $image_name]);
         endif;
 
+        $filename = str_replace(' ', '-', strtolower($course->title)).'.pdf';
+        $pdf = PDF::loadView('pdf.course-content', compact('course'));
+
+        // Save PDF if not exists to path
+        if(Storage::exists('pdf/'.$filename)) :
+            $pdf->save(public_path('pdf/'.$filename));
+        endif;
+
         // Create session variable for message confirmation
         session()->flash('message', "El curso \"{$course->title}\" ha sido actualizado exitosamente");
 
@@ -293,6 +306,12 @@ class CoursesController extends Controller
 
         if(Storage::exists($path.$course->image.'-thumbnail.jpg')) :
             Storage::delete($path.$course->image.'-thumbnail.jpg');
+        endif;
+
+        $filename = str_replace(' ', '-', strtolower($course->title)).'.pdf';
+
+        if(Storage::exists('pdf/'.$filename)) :
+            Storage::delete('pdf/'.$filename);
         endif;
 
         $course->delete();

@@ -20,3 +20,4 @@ yarn-error.log
 /database/seeds/EquipmentCategoriesTableSeeder.php
 /database/seeds/EquipmentTableSeeder.php
 /public/pdf/
+/torage/fonts/
