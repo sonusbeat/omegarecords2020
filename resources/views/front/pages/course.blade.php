@@ -23,6 +23,7 @@
         padding-top: 30px;
         position: relative;
     }
+    .alert-warning { background-color: #ffa24a; color: white; }
 
     .video-responsive iframe,
     .video-responsive object,
@@ -33,6 +34,11 @@
         top: 0;
         width: 100%;
     }
+
+    .error {
+        margin-top: 10px;
+        font-weight: bold;
+    }
 </style>
 @endsection
 
@@ -41,6 +47,9 @@
 <div class="div-content">
 	<!-- .container -->
 	<div class="container">
+        @if(session('message'))
+            <div class="alert alert-success text-center mt-40"><b>{{ session('message') }}</b></div>
+        @endif
         <!-- .row -->
         <div class="row mt-40">
             <!-- .col -->
@@ -109,6 +118,61 @@
                 <div>{!! $course->topics !!}</div>
             </div><!-- /.col -->
         </div><!-- /.row -->
+
+        <br>
+
+        @if(!session('hide-form'))
+            <h2 class="title mt-20 text-center">Inscribete al curso de {{ $course->title }}</h2>
+
+            <div class="row mt-40">
+                <div class="col-sm-12 col-lg-6 col-lg-offset-3">
+                    <div class="alert alert-warning">Aparta tu lugar o solicita informes acerca de este curso, en breve recibirás un correo electrónico con el programa completo y m&aacute;s detalles.</div>
+                    @if($errors->any())
+                        <div id="message" class="alert alert-danger text-center">
+                            <b>Hubo {{ $errors->count() > 1 ? $errors->count() . ' errores' : '1 error' }} en el formulario</b>
+                        </div>
+                    @endif
+                    <form action="{{ route('admin.course_messages.store') }}" method="POST">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="course_id" value="{{ $course->id }}">
+
+                        <div class="form-group @error('name') has-error @enderror">
+                            <label for="name">Nombre</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+
+                            @error('name')
+                                <p class="error text-danger"><i class="fas fa-asterisk fa-1x"></i> {{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="form-group @error('email') has-error @enderror">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
+                            @error('email')
+                                <p class="error text-danger"><i class="fas fa-asterisk fa-1x"></i> {{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="form-group @error('whatsapp') has-error @enderror">
+                            <label for="whatsapp">WhatsApp</label>
+                            <input type="text" class="form-control" id="whatsapp" name="whatsapp" value="{{ old('whatsapp') }}">
+                            <p class="small text-warning" style="margin-top:5px;">* Opcional</p>
+                            @error('whatsapp')
+                                <p class="error text-danger"><i class="fas fa-asterisk fa-1x"></i> {{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="form-group @error('message') has-error @enderror">
+                            <label for="message">Mensaje</label>
+                            <textarea type="email" class="form-control" id="message" name="message" rows="5">{{ old('message') }}</textarea>
+                            @error('message')
+                                <p class="error text-danger"><i class="fas fa-asterisk fa-1x"></i> {{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-default">Enviar</button>
+                        </div>
+                    </form>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+         @endif
 
         <br>
 	</div>

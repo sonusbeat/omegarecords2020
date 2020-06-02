@@ -18,7 +18,7 @@ class CreateCourseMessagesTable extends Migration
             $table->integer('course_id')->index();
             $table->string('name', 150);
             $table->string('email');
-            $table->string('whatsapp')->nullable();
+            $table->integer('whatsapp', 20)->nullable();
             $table->text('message');
             $table->timestamps();
         });

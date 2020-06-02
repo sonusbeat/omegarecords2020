@@ -17,4 +17,5 @@ Route::namespace("Admin")
         Route::resource('courses', 'CoursesController');
         Route::patch('teacher/{id}/active', 'TeachersController@active')->name('teachers.active');
         Route::resource('teachers', 'TeachersController');
+        Route::resource('course_messages', 'CourseMessagesController')->except(['create', 'edit', 'update']);
 });

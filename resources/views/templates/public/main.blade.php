@@ -11,7 +11,7 @@
 		<meta name="robots" content="@yield('meta-robots')">
 		<link rel="alternate" hreflang="mx" href="http://www.omegarecords.com.mx" />
 
-		<link href='https://fonts.googleapis.com/css?family=Comfortaa:400,700' rel='stylesheet' type='text/css'>
+{{--		<link href='https://fonts.googleapis.com/css?family=Comfortaa:400,700' rel='stylesheet' type='text/css'>--}}
 
 		<!-- CSS Styles -->
         <link rel="stylesheet" href="{{ asset('css/styles.min.css') }}">
