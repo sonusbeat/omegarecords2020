@@ -97,10 +97,11 @@ class CoursesController extends Controller
             $course->image_alt = $request->image_alt;
         endif;
 
-        $filename = str_replace(' ', '-', strtolower($course->title)).'.pdf';
+        // Create the PDF File
         $pdf = PDF::loadView('pdf.course-content', compact('course'));
 
-        $pdf->save(public_path('pdf/'.$filename));
+        // Save PDF to Disk
+        $pdf->save(public_path('pdf/'.$course->permalink.'.pdf'));
 
         // Save to Database
         $course->save();
@@ -241,12 +242,12 @@ class CoursesController extends Controller
             $course->update(['image' => $image_name]);
         endif;
 
-        $filename = str_replace(' ', '-', strtolower($course->title)).'.pdf';
+        // Create the PDF File
         $pdf = PDF::loadView('pdf.course-content', compact('course'));
 
-        // Save PDF if not exists to path
-        if(Storage::exists('pdf/'.$filename)) :
-            $pdf->save(public_path('pdf/'.$filename));
+        // Update the PDF if exists
+        if(Storage::exists('pdf/'.$course->permalink.'.pdf')) :
+            $pdf->save(public_path('pdf/'.$course->permalink.'.pdf'));
         endif;
 
         // Create session variable for message confirmation
@@ -286,11 +287,12 @@ class CoursesController extends Controller
      *
      * @param integer $id
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy($id)
     {
         $course = Course::where('id', $id)
-            ->select(['id', 'title', 'image'])
+            ->select(['id', 'title', 'image', 'permalink'])
             ->first();
 
         $path = 'imagenes/courses/';
@@ -308,10 +310,8 @@ class CoursesController extends Controller
             Storage::delete($path.$course->image.'-thumbnail.jpg');
         endif;
 
-        $filename = str_replace(' ', '-', strtolower($course->title)).'.pdf';
-
-        if(Storage::exists('pdf/'.$filename)) :
-            Storage::delete('pdf/'.$filename);
+        if(Storage::exists('pdf/'.$course->permalink.'.pdf')) :
+            Storage::delete('pdf/'.$course->permalink.'.pdf');
         endif;
 
         $course->delete();
