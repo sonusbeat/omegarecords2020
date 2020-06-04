@@ -1,5 +1,11 @@
 @extends('templates.admin.main')
 
+@section('custom-styles')
+<style>
+    .message { color: inherit; }
+</style>
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-12 col-md-6 col-lg-4 col-xlg-4">
@@ -143,9 +149,11 @@
                         <!-- Comment Row -->
                         <div class="comment-row m-t-0">
                             <div class="comment-text w-100">
-                                <h3 class="font-medium">{{ $message->name }}</h3>
-                                <span class="m-b-15 d-block">{{ $message->message }}</span>
-                                <p class="text-muted">{{ $message->created_at->formatLocalized('%e de %B del %Y') }}</p>
+                                <a class="message" href="{{ route('admin.course_messages.show', $message->id) }}">
+                                    <h3 class="font-medium">{{ $message->name }}</h3>
+                                    <span class="m-b-15 d-block">{{ $message->message }}</span>
+                                    <p class="text-muted">{{ $message->created_at->formatLocalized('%e de %B del %Y') }}</p>
+                                </a>
                             </div>
                         </div>
                     @endforeach
