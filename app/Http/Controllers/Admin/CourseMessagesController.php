@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\CourseMessageCreatedEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseMessagesRequest;
 use App\Mail\CourseMessageForm;
@@ -58,13 +59,8 @@ class CourseMessagesController extends Controller
         // Create new instance of message
         CourseMessage::create($request->all());
 
-        $filename = str_replace(' ', '-', strtolower($course->title)).'.pdf';
-
-        // Send email to teacher
-        Mail::to($course->teacher->email, $course->teacher->full_name())->send(new CourseMessageForm($form, $course, $filename));
-
-        // Send email to customer
-        Mail::to(request('email'))->send(new CourseMessageSend($form, $course, $filename, $course->teacher));
+        // Send Emails Event
+        event(new CourseMessageCreatedEvent($course, $form));
 
         // Set session variable message
         session()->flash('message', 'Tu mensaje ha sido enviado, pronto recibirás un correo electrónico con información detallada del curso');
