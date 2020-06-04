@@ -75,6 +75,7 @@ class Course extends Model
         }])
         ->select('teacher_id', 'title', 'permalink', 'description', 'image', 'image_alt', 'duration', 'start_date')
         ->where('active', true)
+        ->orderBy('position', 'asc')
         ->paginate(8);
     }
 
