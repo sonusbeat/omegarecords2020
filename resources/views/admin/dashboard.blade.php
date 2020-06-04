@@ -69,11 +69,11 @@
 
 <div class="row">
     <div class="col-12 col-md-6 col-lg-4 col-xlg-4">
-        <a href="{{ '#' }}">
+        <a href="{{ route('admin.course_messages.index') }}">
             <div class="card card-hover">
                 <div class="box bg-orange text-center">
                     <h1 class="font-light text-white"><i class="fas fa-comments"></i></h1>
-                    <h6 class="text-white">Mensages</h6>
+                    <h6 class="text-white">Mensajes</h6>
                 </div>
             </div>
         </a>
@@ -135,25 +135,32 @@
         <!-- Messages -->
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Ultimos Mensajes</h4>
-            </div>
-            @foreach($messages as $message)
-            <div class="comment-widgets scrollable ps-container ps-theme-default" data-ps-id="90f2ee71-68ea-9dc5-a2b3-d5a206778430">
-                <!-- Comment Row -->
-                <div class="comment-row m-t-0">
-                    <div class="comment-text w-100">
-                        <h3 class="font-medium">{{ $message->name }}</h3>
-                        <span class="m-b-15 d-block">{{ $message->message }}</span>
-                        <p class="text-muted">{{ $message->created_at->formatLocalized('%e de %B del %Y') }}</p>
+                <h2 class="card-title">Últimos Mensajes</h2>
+            </div><!-- /.card-body -->
+            <div class="comment-widgets scrollable ps-container ps-theme-default">
+                @if(isset($messages) && $messages->count())
+                    @foreach($messages as $message)
+                        <!-- Comment Row -->
+                        <div class="comment-row m-t-0">
+                            <div class="comment-text w-100">
+                                <h3 class="font-medium">{{ $message->name }}</h3>
+                                <span class="m-b-15 d-block">{{ $message->message }}</span>
+                                <p class="text-muted">{{ $message->created_at->formatLocalized('%e de %B del %Y') }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="alert alert-warning text-center font-weight-bold mx-4">
+                        &iexcl; A&uacute;n no hay mensajes !
                     </div>
-                </div>
-            @endforeach
-            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
-        </div>
+                @endif
+            </div><!-- /.comment-widgets -->
+        </div><!-- /.card -->
+
         <!-- Equipment -->
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title">Ultimo Equipo</h3>
+                <h2 class="card-title">Ultimo Equipo</h2>
                 <ul>
                 @foreach($equipment as $item)
                     <li>
@@ -216,7 +223,7 @@
         <!-- Users -->
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Ultimos Usuarios</h4>
+                <h2 class="card-title">Ultimos Usuarios</h2>
             </div>
             <div class="comment-widgets scrollable">
                 @foreach($users as $user)

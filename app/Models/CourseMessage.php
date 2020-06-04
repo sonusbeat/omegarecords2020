@@ -18,4 +18,13 @@ class CourseMessage extends Model
         'whatsapp',
         'message',
     ];
+
+    /**
+     * Get the course to the message
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }

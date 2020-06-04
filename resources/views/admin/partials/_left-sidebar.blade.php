@@ -57,6 +57,14 @@
                         <i class="fas fa-book"></i><span class="hide-menu">Cursos</span>
                     </a>
                 </li>
+
+                <li class="sidebar-item {{ request()->segment(2) == 'course_messages' ? 'selected' : '' }}">
+                    <a href="{{ route('admin.course_messages.index') }}"
+                       class="sidebar-link {{ request()->segment(2) == 'course_messages' ? 'active' : '' }}"
+                    >
+                        <i class="fas fa-comments"></i><span class="hide-menu">Mensajes de Cursos</span>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

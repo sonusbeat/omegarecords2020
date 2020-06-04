@@ -20,7 +20,22 @@ class CourseMessagesController extends Controller
      */
     public function index()
     {
-        //
+        $messages = CourseMessage::with('course:id,title')->paginate(8);
+
+        return view('admin.course-messages.index', compact('messages'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param integer $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $message = CourseMessage::whereId($id)->with('course:id,title')->first();
+
+        return view('admin.course-messages.show', compact('message'));
     }
 
     /**
@@ -62,17 +77,6 @@ class CourseMessagesController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -80,6 +84,13 @@ class CourseMessagesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $message = CourseMessage::whereId($id)->select('id', 'name')->first();
+
+        // Delete from database
+        $message->delete();
+
+        session()->flash('message', 'Se elimino el mensaje de "'.$message->name.'" satisfactoriamente');
+
+        return redirect()->route('admin.course_messages.index');
     }
 }
