@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Mail;
 
-class SendEmailToTeacherListener
+class SendEmailToTeacherListener implements ShouldQueue
 {
     /**
      * Handle the event.

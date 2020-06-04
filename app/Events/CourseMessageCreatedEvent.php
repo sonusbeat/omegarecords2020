@@ -20,14 +20,18 @@ class CourseMessageCreatedEvent
     /** @var array */
     public $form;
 
+    /** @var string */
+    public $email;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($course, $form)
+    public function __construct($course, $form, $email)
     {
         $this->course = $course;
         $this->form = $form;
+        $this->email = $email;
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Mail;
 
-class SendEmailToCustomerListener
+class SendEmailToCustomerListener implements ShouldQueue
 {
     /**
      * Handle the event.
@@ -23,7 +23,7 @@ class SendEmailToCustomerListener
         $course = $event->course;
 
         // Send email to customer
-        Mail::to(request('email'))->send(
+        Mail::to($event->email)->send(
             new CourseMessageSend($event->form, $course, $filename, $teacher)
         );
     }

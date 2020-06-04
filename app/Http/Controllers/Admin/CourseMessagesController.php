@@ -56,11 +56,11 @@ class CourseMessagesController extends Controller
         // Create form array to create PDF
         $form = $request->except('_token', 'course_id');
 
-        // Create new instance of message
+        // Create the message to database
         CourseMessage::create($request->all());
 
         // Send Emails Event
-        event(new CourseMessageCreatedEvent($course, $form));
+        event(new CourseMessageCreatedEvent($course, $form, $request->email));
 
         // Set session variable message
         session()->flash('message', 'Tu mensaje ha sido enviado, pronto recibirás un correo electrónico con información detallada del curso');
