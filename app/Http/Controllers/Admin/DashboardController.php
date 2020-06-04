@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\CourseMessage;
 use App\Models\Equipment;
 use App\Models\StudioGallery;
 use App\Models\User;
@@ -28,6 +29,11 @@ class DashboardController extends Controller
                         ->get(),
 
             "users" => User::select(['id', 'first_name', 'last_name', 'image', 'image_alt', 'created_at'])
+                ->orderBy('created_at', 'desc')
+                ->limit(5)
+                ->get(),
+
+            "messages" => CourseMessage::select('id', 'name', 'message', 'created_at')
                 ->orderBy('created_at', 'desc')
                 ->limit(5)
                 ->get(),

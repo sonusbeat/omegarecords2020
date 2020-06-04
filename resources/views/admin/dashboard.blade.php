@@ -68,6 +68,25 @@
 </div>
 
 <div class="row">
+    <div class="col-12 col-md-6 col-lg-4 col-xlg-4">
+        <a href="{{ '#' }}">
+            <div class="card card-hover">
+                <div class="box bg-orange text-center">
+                    <h1 class="font-light text-white"><i class="fas fa-comments"></i></h1>
+                    <h6 class="text-white">Mensages</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 col-xlg-4">
+        <!-- Proximamente -->
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 col-xlg-4">
+        <!-- Proximamente -->
+    </div>
+</div>
+
+<div class="row">
     <div class="col-12 col-lg-6">
         <!-- Images -->
         <div class="card">
@@ -113,6 +132,24 @@
         </div>
     </div>
     <div class="col-12 col-lg-6">
+        <!-- Messages -->
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Ultimos Mensajes</h4>
+            </div>
+            @foreach($messages as $message)
+            <div class="comment-widgets scrollable ps-container ps-theme-default" data-ps-id="90f2ee71-68ea-9dc5-a2b3-d5a206778430">
+                <!-- Comment Row -->
+                <div class="comment-row m-t-0">
+                    <div class="comment-text w-100">
+                        <h3 class="font-medium">{{ $message->name }}</h3>
+                        <span class="m-b-15 d-block">{{ $message->message }}</span>
+                        <p class="text-muted">{{ $message->created_at->formatLocalized('%e de %B del %Y') }}</p>
+                    </div>
+                </div>
+            @endforeach
+            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+        </div>
         <!-- Equipment -->
         <div class="card">
             <div class="card-body">
@@ -128,54 +165,54 @@
                 </ul>
             </div>
         </div>
-            <!-- Images -->
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">Ultimos Cursos</h2>
-                </div>
-                <div class="card-body comment-widgets scrollable">
-                @foreach($courses as $course)
-                    <!-- Comment Row -->
-                        <div class="row p-sm-4 mb-3">
-                            <div class="col-12 col-lg-7">
-                                <h3 class="font-medium">{{ $course->title }}</h3>
-                                <img src="{{ asset("imagenes/courses/{$course->image}-thumbnail.jpg") }}"
-                                     alt="{{ $course->image_alt }}" class="img-fluid img-rounded mb-4">
-                            </div>
-                            <div class="col-12 col-lg-5 d-flex flex-column justify-content-center">
-                                <span class="m-b-15 d-block">{!! Str::limit($course->description, 100) !!}</span>
-                                <div class="comment-footer">
-                                    <div class="d-block d-md-none">
-                                        <a class="btn btn-info btn-lg"
-                                           href="{{ route('admin.courses.show', $course->id) }}">
-                                            <span class="fas fa-eye"></span>
-                                        </a>
-                                        <a class="btn btn-warning btn-lg float-right"
-                                           href="{{ route('admin.courses.edit', $course->id) }}">
-                                            <span class="fas fa-edit"></span>
-                                        </a>
-                                        <hr>
-                                    </div>
-
-                                    <div class="d-none d-md-block">
-                                        <a class="btn btn-info btn-md"
-                                           href="{{ route('admin.courses.show', $course->id) }}">
-                                            <span class="fas fa-eye"></span>
-                                        </a>
-                                        <a class="btn btn-warning btn-md"
-                                           href="{{ route('admin.courses.edit', $course->id) }}">
-                                            <span class="fas fa-edit"></span>
-                                        </a>
-                                    </div>
-
-                                    <p class="mt-3 d-none d-lg-block text-muted">
-                                        <span><b>Fecha:</b></span>&nbsp;{{ $course->created_at->format('d/m/Y') }}</p>
+        <!-- Studio -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Ultimos Cursos</h2>
+            </div>
+            <div class="card-body comment-widgets scrollable">
+            @foreach($courses as $course)
+                <!-- Comment Row -->
+                    <div class="row p-sm-4 mb-3">
+                        <div class="col-12 col-lg-7">
+                            <h3 class="font-medium">{{ $course->title }}</h3>
+                            <img src="{{ asset("imagenes/courses/{$course->image}-thumbnail.jpg") }}"
+                                 alt="{{ $course->image_alt }}" class="img-fluid img-rounded mb-4">
+                        </div>
+                        <div class="col-12 col-lg-5 d-flex flex-column justify-content-center">
+                            <span class="m-b-15 d-block">{!! Str::limit($course->description, 100) !!}</span>
+                            <div class="comment-footer">
+                                <div class="d-block d-md-none">
+                                    <a class="btn btn-info btn-lg"
+                                       href="{{ route('admin.courses.show', $course->id) }}">
+                                        <span class="fas fa-eye"></span>
+                                    </a>
+                                    <a class="btn btn-warning btn-lg float-right"
+                                       href="{{ route('admin.courses.edit', $course->id) }}">
+                                        <span class="fas fa-edit"></span>
+                                    </a>
+                                    <hr>
                                 </div>
+
+                                <div class="d-none d-md-block">
+                                    <a class="btn btn-info btn-md"
+                                       href="{{ route('admin.courses.show', $course->id) }}">
+                                        <span class="fas fa-eye"></span>
+                                    </a>
+                                    <a class="btn btn-warning btn-md"
+                                       href="{{ route('admin.courses.edit', $course->id) }}">
+                                        <span class="fas fa-edit"></span>
+                                    </a>
+                                </div>
+
+                                <p class="mt-3 d-none d-lg-block text-muted">
+                                    <span><b>Fecha:</b></span>&nbsp;{{ $course->created_at->format('d/m/Y') }}</p>
                             </div>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
+        </div>
         <!-- Users -->
         <div class="card">
             <div class="card-body">
