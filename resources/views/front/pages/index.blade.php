@@ -72,10 +72,10 @@ Somos un Estudio de Grabación en Guadalajara Jalisco Mexico. Ofrecemos Servicio
 	</div><!-- .container -->
 </div><!-- .home-content -->
 	<div class="box-1">
-		<div class="container_24">
-			<div class="grid_24">
-				<div class="grid_8 alpha gray-text">
-					<div class="about-us">
+		<div class="container">
+			<div class="row">
+                <div class="col-sm-12 col-lg-6">
+                    <div class="about-us gray-text">
 						<h2>¿ Quienes Somos ?</h2>
 
 						<p>Somos una Productora, Sello Discografico y Estudio de Grabación en Guadalajara Jalisco México.</p>
@@ -85,9 +85,9 @@ Somos un Estudio de Grabación en Guadalajara Jalisco Mexico. Ofrecemos Servicio
 						<p>Contamos con un Equipo de Trabajo Altamente Capacitado que te Ayudara a cubrir cada una de las necesidades de tu Proyecto</p>
 
 					</div><!-- / .about-us -->
-				</div>
+				</div><!-- /.col -->
 
-				<div class="grid_8">
+				<div class="col-sm-12 col-lg-offset-1 col-lg-5 alpha gray-text">
 					<h2>Objetivos</h2>
 
 					<div class="wrapper hline2">
@@ -127,51 +127,9 @@ Somos un Estudio de Grabación en Guadalajara Jalisco Mexico. Ofrecemos Servicio
 							</div>
 						</div>
 					</div>
-
-				</div>
-
-				<div class="grid_8 omega">
-					<h2>Equipo de Trabajo</h2>
-
-					<div class="banner2 marTop2">
-						<img src="imagenes/colaboradores/ingeniero-sonido-luis-segura.jpg" alt="Colaborador Productor Musical" class="img2 no_resize">
-						<div class="box">
-							<h3><a href="#" class="link1">Luis Segura</a></h3>
-							<p>Productor Musical</p>
-						</div>
-					</div>
-
-					<div class="banner2">
-						<img src="imagenes/colaboradores/daniel-gonzalez-desarrollador-web.jpg" alt="Colaborador Desarrollador Web" class="img2 no_resize">
-						<div class="box">
-							<h3><a href="#" class="link1">Daniel González</a></h3>
-							<p>Web Master y<br>Distribución Digital</p>
-						</div>
-					</div>
-
-					{{--
-						<div class="banner2">
-							<div style="
-									margin-right: 20px;
-									float: left;
-									height: 90px;
-									width: 90px;
-									display: flex;
-		    					justify-content: center;
-							    align-items: center;
-							">
-								<i style="color: white;" class="fa fa-user fa-5x"></i>
-							</div>
-							<div class="box">
-								<h3><a href="#" class="link1">Nombre</a></h3>
-								<p>Posición</p>
-							</div>
-						</div>
-					--}}
-
-				</div>
-			</div>
-		</div>
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.container -->
 	</div><!-- .box-1 -->
 </div><!-- .div-content -->
 @endsection
