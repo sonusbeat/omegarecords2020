@@ -22,3 +22,5 @@ yarn-error.log
 /public/pdf/
 /storage/fonts/
 worker.log
+course-messages.log
+
