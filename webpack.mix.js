@@ -12,5 +12,9 @@ mix.styles([
     'public/css/custom-styles.css'
 ], 'public/css/styles.min.css');
 
+mix.browserSync({
+    proxy: 'omegarecords.local'
+});
+
 // mix.js('resources/js/app.js', 'public/js')
 //    .sass('resources/sass/app.scss', 'public/css');

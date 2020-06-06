@@ -7,9 +7,7 @@
 @section('additional-styles')
 <style>
     h4 { color: #ff9800; font-size: 15px; font-weight: bold; }
-    ul { margin: 20px 0 15px 20px; list-style: disc; }
     .title { color: #c83939; margin-top: 0; }
-    .description { margin-bottom: 20px; }
     a.link:link, a.link:hover { color: #ff9800; }
     .mt-40 { margin-top: 40px; }
     .mt-20 { margin-top: 20px; }
@@ -43,21 +41,21 @@
                 <section>
                     <div class="text-right">
                         @if($teacher->facebook)
-                            <a href="{{ $teacher->facebook }}" title="Visitar Facebook" target="_blank"><i class="text-primary fa fa-facebook-square fa-3x"></i></a>
+                            <a href="{{ $teacher->facebook }}" title="Visitar Facebook" target="_blank"><i class="text-primary fab fa-facebook-square fa-3x"></i></a>
                             &nbsp;
                         @endif
 
                         @if($teacher->twitter)
-                            <a href="{{ $teacher->twitter }}" title="Visitar Twitter" target="_blank"><i class="text-info fa fa-twitter fa-3x"></i></a>&nbsp;
+                            <a href="{{ $teacher->twitter }}" title="Visitar Twitter" target="_blank"><i class="text-info fab fa-twitter fa-3x"></i></a>&nbsp;
                         @endif
 
                         @if($teacher->instagram)
-                            <a href="{{ $teacher->instagram }}" title="Visitar Instagram" target="_blank"><i class="text-warning fa fa-instagram fa-3x"></i></a>
+                            <a href="{{ $teacher->instagram }}" title="Visitar Instagram" target="_blank"><i class="text-warning fab fa-instagram fa-3x"></i></a>
                             &nbsp;
                         @endif
 
                         @if($teacher->youtube)
-                            <a href="{{ $teacher->youtube }}" title="Visitar Youtube" target="_blank"><i class="text-danger fa fa-youtube fa-3x"></i></a>
+                            <a href="{{ $teacher->youtube }}" title="Visitar Youtube" target="_blank"><i class="text-danger fab fa-youtube fa-3x"></i></a>
                             &nbsp;
                         @endif
                     </div>
@@ -101,7 +99,7 @@
 @section('custom-scripts')
 <script>
 	$(function() {
-		$("nav a:contains('INSTRUCTORES')").parent().addClass('current');
+		$("nav a:contains('STAFF')").parent().addClass('current');
 	});
 </script>
 @endsection

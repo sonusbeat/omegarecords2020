@@ -93,6 +93,20 @@ class PagesController extends Controller
     /**
      * Display teacher page
      *
+     * @return Response
+     */
+    public function teachers()
+    {
+        $teachers = Teacher::where('active', true)
+            ->select('id', 'first_name', 'last_name', 'image', 'image_alt', 'biography')
+            ->paginate(8);
+
+        return view('front/pages/teachers', compact('teachers'));
+    }
+
+    /**
+     * Display teacher page
+     *
      * @param integer $id
      * @return Response
      */

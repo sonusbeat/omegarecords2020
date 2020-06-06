@@ -11,7 +11,7 @@
 		<meta name="robots" content="@yield('meta-robots')">
 		<link rel="alternate" hreflang="mx" href="http://www.omegarecords.com.mx" />
 
-{{--		<link href='https://fonts.googleapis.com/css?family=Comfortaa:400,700' rel='stylesheet' type='text/css'>--}}
+		<link href='https://fonts.googleapis.com/css?family=Comfortaa:400,700' rel='stylesheet' type='text/css'>
 
 		<!-- CSS Styles -->
         <link rel="stylesheet" href="{{ asset('css/styles.min.css') }}">
@@ -54,17 +54,16 @@
 		  <header>
 				<div class="container_24">
 					<div class="grid_24">
-
-						<a href="/"
-							data-toggle="tooltip"
-							data-placement="right"
-							title="Ir a Home de Omega Records"
-						>
-							<img src="{{ asset('images/logo-omega-records-horizontal.png') }}" alt="Omega Records Logo">
-						</a>
-
-					  @include('templates/public/_partials/main-menu')
-
+                        <div class="logo-menu">
+                            <a href="/"
+                                data-toggle="tooltip"
+                                data-placement="right"
+                                title="Ir a Home de Omega Records"
+						    >
+							    <img src="{{ asset('images/logo-omega-records-horizontal.png') }}" alt="Omega Records Logo">
+						    </a>
+					        @include('templates/public/_partials/main-menu')
+                        </div><!-- /.logo-menu -->
 					</div><!-- / .grid_24 -->
 				</div><!-- / .container_24 -->
 		  </header>
