@@ -118,6 +118,16 @@ class PagesController extends Controller
     }
 
     /**
+     * Display portfolio page
+     *
+     * @return Response
+     */
+    public function portfolio()
+    {
+        return view('front/pages/portfolio');
+    }
+
+    /**
      * Display the contact page
      *
      * @return Response

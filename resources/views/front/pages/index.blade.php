@@ -34,29 +34,10 @@ Somos un Estudio de Grabación en Guadalajara Jalisco Mexico. Ofrecemos Servicio
 			</div><!-- .col -->
 
 			<div class="col-sm-6 col-md-4">
-					<h2 class="hidden-title">Equipo de Grabación de Audio Profesional</h2>
-					<a href="{{ url('equipo') }}">
-						<figure>
-							<img src="imagenes/equipo-de-audio-profesional-600-400.jpg"
-								class="img1 img-responsive img-rounded"
-								alt="Equipo de Audio de Omega Records"
-							>
-							<span class="img_txt">Equipo</span>
-						</figure>
-					</a>
-					<p class="color3">
-						Tenemos los mejores Equipos de Producción<br>
-						de Audio Profesional para brindar una<br>
-						<strong>Optima Calidad de Sonido</strong>
-						<a href="{{ url('equipo') }}" class="more_arr_btn"><spam class="fa fa-chevron-circle-right fa-lg"></spam></a>
-					</p>
-			</div><!-- .col -->
-
-			<div class="col-sm-6 col-md-4">
 				<h2 class="hidden-title">Servicios de Grabación de Estudio Profesional</h2>
 				<figure>
 					<a href="{{ url('servicios') }}">
-						<img src="imagenes/microfono-y-consola-de-audio-600-400.jpg"
+						<img src="{{ asset('imagenes/servicios-estudio-grabacion-600-400.jpg')}}"
 							class="img1 img-responsive img-rounded"
 							alt="Servicios de Omega Records"
 						>
@@ -67,6 +48,25 @@ Somos un Estudio de Grabación en Guadalajara Jalisco Mexico. Ofrecemos Servicio
 					Visite nuestra amplia gama de servicios generales relacionados con la <b>Industria Musical</b>
 					<a href="{{ url('servicios') }}" class="more_arr_btn"><strong class="fa fa-chevron-circle-right fa-lg"></strong></a>
 				</p>
+			</div><!-- .col -->
+
+            <div class="col-sm-6 col-md-4">
+					<h2 class="hidden-title">Portafolio de grabación, producción, mezcla y masterización de nuestros trabajos realizados</h2>
+					<a href="{{ route('front.portfolio') }}">
+						<figure>
+							<img src="{{ asset('imagenes/portafolio-trabajos-realizados-600-400.jpg') }}"
+								class="img1 img-responsive img-rounded"
+								alt="Equipo de Audio de Omega Records"
+							>
+							<span class="img_txt">Portafolio</span>
+						</figure>
+					</a>
+					<p class="color3">
+						Revisa nuestros trabajos realizados<br>
+						de grabación, producción, mezcla y masterización<br>
+						de nuestros clientes.
+						<a href="{{ url('equipo') }}" class="more_arr_btn"><spam class="fa fa-chevron-circle-right fa-lg"></spam></a>
+					</p>
 			</div><!-- .col -->
 		</div><!-- .row -->
 	</div><!-- .container -->

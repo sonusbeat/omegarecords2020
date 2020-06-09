@@ -9,6 +9,7 @@ Route::namespace("Front")->name('front.')->group(function() {
 	Route::get('curso/{permalink}', 'PagesController@course')->name('course');
 	Route::get('staff', 'PagesController@teachers')->name('staff');
 	Route::get('instructor/{id}/{username}', 'PagesController@teacher')->name('teacher');
+	Route::get('portafolio', 'PagesController@portfolio')->name('portfolio');
 	Route::get('contacto', 'PagesController@contact')->name('contact');
 	Route::post('email-process', 'PagesController@email')->name('email-process');
 });
