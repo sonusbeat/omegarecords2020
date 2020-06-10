@@ -1,4 +1,4 @@
-<div class="container hidden-xs hidden-sm">
+<div id="carousel" class="container hidden-xs hidden-sm" style="display:none;">
   <div class="row">
     <div class="col-md-12">
       <div id="main-carousel" class="carousel slide main-carousel" data-ride="carousel">

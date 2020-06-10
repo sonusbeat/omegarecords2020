@@ -1,6 +1,5 @@
-<video width="320" height="240" controls autoplay>
-    <source src="#" type="video/mp4">
-    <p class="text-danger text-center">
-        <b>Tu navegador no soporta este formato de video</b>
-    </p>
-</video>
+<div id="video" class="container">
+    <div class="video-responsive">
+    <iframe src="https://www.youtube.com/embed/UVYfHN7wAwE?controls=0&loop=1&mute=1&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
