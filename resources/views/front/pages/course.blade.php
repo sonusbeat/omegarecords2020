@@ -7,7 +7,6 @@
 @section('additional-styles')
 <style>
     h4 { color: #ff9800; font-size: 15px; font-weight: bold; }
-    ul { margin: 20px 0 15px 20px; list-style: disc; }
     .title { color: #c83939; margin-top: 0; }
     .description { margin-bottom: 20px; }
     a.link:link, a.link:hover { color: #ff9800; }
@@ -16,24 +15,7 @@
     h4:first-child { margin-top: 0; }
     .font-weight-bold { font-weight: bold; }
 
-    .video-responsive {
-        height: 0;
-        overflow: hidden;
-        padding-bottom: 56.25%;
-        padding-top: 30px;
-        position: relative;
-    }
     .alert-warning { background-color: #ffa24a; color: white; }
-
-    .video-responsive iframe,
-    .video-responsive object,
-    .video-responsive embed {
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-    }
 
     .error {
         margin-top: 10px;
@@ -111,11 +93,11 @@
             </div><!-- /.col -->
             <div class="col-sm-12 col-lg-6">
                 <h2 class="title">Vision General</h2>
-                <div>{!! $course->overview !!}</div>
+                <div class="overview-content">{!! $course->overview !!}</div>
             </div><!-- /.col -->
             <div class="col-sm-12 col-lg-4">
                 <h2 class="title">Aprenderás</h2>
-                <div>{!! $course->topics !!}</div>
+                <div class="topics-content">{!! $course->topics !!}</div>
             </div><!-- /.col -->
         </div><!-- /.row -->
 
