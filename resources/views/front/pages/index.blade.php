@@ -170,8 +170,8 @@ Somos un Estudio de Grabación en Guadalajara Jalisco Mexico. Ofrecemos Servicio
 	});
 
     setTimeout(function () {
-        document.getElementById('video').style.display='none';
-        document.getElementById('carousel').style.display='block';
+        document.querySelector('#video').style.display='none';
+        document.querySelector('#carousel').style.display='block';
     }, 42000);
 
 </script>
