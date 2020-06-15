@@ -21,6 +21,15 @@
         margin-top: 10px;
         font-weight: bold;
     }
+    @media (max-width: 1023px) {
+        img {
+            border-radius: 5px;
+            margin-bottom: 1.5em !important;
+        }
+        .overview-content p:last-child {
+            margin-bottom: 2em;
+        }
+    }
 </style>
 @endsection
 
@@ -77,6 +86,7 @@
         <br>
 
         @if($course->video)
+        <h2 class="title">Video</h2><br>
         <div class="video-responsive">{!! $course->video !!}</div>
         @endif
 
