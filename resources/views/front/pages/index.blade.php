@@ -60,7 +60,7 @@ Somos un Estudio de Grabación en Guadalajara Jalisco Mexico. Ofrecemos Servicio
             <div class="col-sm-12 col-md-4 col-lg-4">
 					<h2 class="hidden-title">Portafolio de grabación, producción, mezcla y masterización de nuestros trabajos realizados</h2>
                 <div class="content-links">
-                    <a href="{{ route('front.portfolio') }}">
+                    <a href="https://soundcloud.com/omegarecordsestudio" target="_blank">
                         <figure>
                             <img src="{{ asset('imagenes/portafolio-trabajos-realizados-600-400.jpg') }}"
                                  class="img1 img-responsive img-rounded"
