@@ -94,6 +94,14 @@
     margin: 20px 0 15px 20px;
     list-style: disc;
 }
+/* Mobile devices (phones, 320px to 768px) */
+@media (max-width: 767px) {
+    .logo-menu {
+        display: flex;
+        flex-direction: column;
+        height: 120px;
+    }
+}
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 1023px) {

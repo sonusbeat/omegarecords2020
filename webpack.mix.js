@@ -13,7 +13,9 @@ mix.styles([
 ], 'public/css/styles.min.css');
 
 mix.browserSync({
-    proxy: 'omegarecords.local'
+    proxy: 'omegarecords.local',
+    open: false,
+    online: true
 });
 
 // mix.js('resources/js/app.js', 'public/js')

@@ -52,20 +52,19 @@
 
 		<div class="main">
 		  <header>
-				<div class="container_24">
-					<div class="grid_24">
-                        <div class="logo-menu">
-                            <a href="/"
-                                data-toggle="tooltip"
-                                data-placement="right"
-                                title="Ir a Home de Omega Records"
-						    >
-							    <img src="{{ asset('images/logo-omega-records-horizontal.png') }}" alt="Omega Records Logo">
-						    </a>
-					        @include('templates/public/_partials/main-menu')
-                        </div><!-- /.logo-menu -->
-					</div><!-- / .grid_24 -->
-				</div><!-- / .container_24 -->
+            <div class="container">
+                <div class="logo-menu">
+                    <a href="/"
+                       data-toggle="tooltip"
+                       data-placement="right"
+                       title="Ir a Home de Omega Records"
+                    >
+                        <img src="{{ asset('images/logo-omega-records-horizontal.png') }}"
+                             alt="Omega Records Logo">
+                    </a>
+                    @include('templates/public/_partials/main-menu')
+                </div><!-- /.logo-menu -->
+            </div><!-- /.container -->
 		  </header>
 
 			@yield('content')
