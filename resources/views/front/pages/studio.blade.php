@@ -29,8 +29,6 @@ Contamos con instalaciones tratadas acústicamente para grabar Audio Profesional
                 <div class="col-sm-6 col-md-3">
                     <a data-lightbox="instalaciones" data-title="{{ $image->description }}" href="{{ asset("imagenes/studio_gallery/{$image->image}-large.jpg") }}">
                         <picture>
-                            <source srcset="{{ asset("imagenes/studio_gallery/{$image->image}-thumbnail.jpg") }}" media="(max-width: 960px)">
-                            <source srcset="{{ asset("imagenes/studio_gallery/{$image->image}-medium.jpg") }}" media="(min-width: 961px)">
                             <img class="img-responsive img-thumbnail" src="{{ asset("imagenes/studio_gallery/{$image->image}-thumbnail.jpg") }}" alt="{{ $image->image_alt }}">
                         </picture>
                     </a>
