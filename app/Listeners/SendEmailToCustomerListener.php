@@ -18,7 +18,7 @@ class SendEmailToCustomerListener implements ShouldQueue
      */
     public function handle(CourseMessageCreatedEvent $event)
     {
-        $filename = $event->course->permalink;
+        $filename = $event->course->permalink.'.pdf';
         $teacher = $event->course->teacher;
         $course = $event->course;
 
