@@ -49,7 +49,7 @@ class CourseMessagesController extends Controller
     {
         // Get course with teacher
         $course = Course::where('id', $request->course_id)
-            ->select('id', 'teacher_id', 'title', 'image', 'description', 'overview', 'topics', 'content', 'price', 'start_date', 'duration')
+            ->select('id', 'teacher_id', 'title', 'permalink', 'image', 'description', 'overview', 'topics', 'content', 'price', 'start_date', 'duration')
             ->with('teacher:id,first_name,last_name,email')
             ->first();
 

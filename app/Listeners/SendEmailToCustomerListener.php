@@ -18,7 +18,7 @@ class SendEmailToCustomerListener implements ShouldQueue
      */
     public function handle(CourseMessageCreatedEvent $event)
     {
-        $filename = $this->transform_title($event->course->title);
+        $filename = $event->course->permalink;
         $teacher = $event->course->teacher;
         $course = $event->course;
 
@@ -26,10 +26,5 @@ class SendEmailToCustomerListener implements ShouldQueue
         Mail::to($event->email)->send(
             new CourseMessageSend($event->form, $course, $filename, $teacher)
         );
-    }
-
-    private function transform_title($title)
-    {
-        return str_replace(' ', '-', strtolower($title)).'.pdf';
     }
 }
