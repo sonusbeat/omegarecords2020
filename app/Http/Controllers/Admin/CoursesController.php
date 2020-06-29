@@ -186,9 +186,6 @@ class CoursesController extends Controller
             ]);
         endif;
 
-        // Save to database
-        $course->update($request->except('image'));
-
         if($request->hasFile('image')):
             $file = $request->image;
             $date = date('Ymdims');
@@ -242,13 +239,16 @@ class CoursesController extends Controller
             $course->update(['image' => $image_name]);
         endif;
 
-        // Create the PDF File
-        $pdf = PDF::loadView('pdf.course-content', compact('course'));
-
         // Update the PDF if exists
         if(Storage::exists('pdf/'.$course->permalink.'.pdf')) :
-            $pdf->save(public_path('pdf/'.$course->permalink.'.pdf'));
+            // Create the PDF File
+            $pdf = PDF::loadView('pdf.course-content', compact('course'));
+            Storage::delete('pdf/' . $course->permalink . '.pdf');
+            $pdf->save(public_path('pdf/'.strtolower(str_replace(' ', '-', $request->permalink)).'.pdf'));
         endif;
+
+        // Save to database
+        $course->update($request->except('image'));
 
         // Create session variable for message confirmation
         session()->flash('message', "El curso \"{$course->title}\" ha sido actualizado exitosamente");
