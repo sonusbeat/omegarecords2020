@@ -44,6 +44,10 @@
           gtag('config', 'UA-167953316-1');
         </script>
       @endif
+
+      @if(env('adsense'))
+        <script data-ad-client="ca-pub-8308354750888908" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      @endif
 	</head>
 	<body>
 		<h1 class="hidden-title">Omega Records Estudio de Grabación Musical</h1>
