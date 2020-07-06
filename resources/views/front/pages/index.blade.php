@@ -21,18 +21,19 @@ Somos un Estudio de Grabación en Guadalajara Jalisco Mexico. Ofrecemos Servicio
 		<div class="row">
 			<div class="col-sm-12 col-md-4 col-lg-4">
 				<h2 class="hidden-title">Instalaciones de Estudio de Grabación</h2>
+
                 <div class="content-links">
-                    <a href="{{ url('estudio') }}">
+                    <a href="{{ url('estudio') }}" title="Instalaciones de Estudio de Grabación Profesional">
                         <figure>
                             <img src="imagenes/estudio-de-grabacion-omega-records-600-400.jpg"
                                  class="img1 img-responsive img-rounded"
-                                 alt="Instalaciones de Estudio de Grabacion Omega Records"
+                                 alt="Instalaciones de Estudio de Grabación Profesional"
                             >
                             <span class="img_txt">Instalaciones</span>
                         </figure>
                     </a>
                     <p class="color3 description">
-                        Contamos con comodas instalaciones con <b>Tratamiento Acústico</b>
+                        Contamos con cómodas instalaciones con <b>Tratamiento Acústico</b>
                         adecuado para desarrollar un trabajo musical creativo
                         y con un ambiente agradable
                     </p>
@@ -41,12 +42,13 @@ Somos un Estudio de Grabación en Guadalajara Jalisco Mexico. Ofrecemos Servicio
 
 			<div class="col-sm-12 col-md-4 col-lg-4">
 				<h2 class="hidden-title">Servicios de Grabación de Estudio Profesional</h2>
+
                 <div class="content-links">
-                    <a href="{{ url('servicios') }}">
+                    <a href="{{ url('servicios') }}" title="Servicios de Estudio de Producción Musical">
                         <figure>
-                            <img src="{{ asset('imagenes/servicios-estudio-grabacion-600-400.jpg')}}"
+                            <img src="{{ asset('imagenes/estudio-de-grabacion-profesional-servicios.jpg')}}"
                                 class="img1 img-responsive img-rounded"
-                                alt="Servicios de Omega Records"
+                                alt="Servicios de Estudio de Producción Musical"
                             >
                             <span class="img_txt">Servicios</span>
                         </figure>
@@ -58,13 +60,14 @@ Somos un Estudio de Grabación en Guadalajara Jalisco Mexico. Ofrecemos Servicio
 			</div><!-- .col -->
 
             <div class="col-sm-12 col-md-4 col-lg-4">
-					<h2 class="hidden-title">Portafolio de grabación, producción, mezcla y masterización de nuestros trabajos realizados</h2>
+                <h2 class="hidden-title">Portafolio de grabación, producción, mezcla y masterización de nuestros trabajos realizados</h2>
+
                 <div class="content-links">
-                    <a href="https://soundcloud.com/omegarecordsestudio" target="_blank">
+                    <a href="https://soundcloud.com/omegarecordsestudio" title="Portafolio de Trabajos Realizados Musicales">
                         <figure>
                             <img src="{{ asset('imagenes/portafolio-trabajos-realizados-600-400.jpg') }}"
                                  class="img1 img-responsive img-rounded"
-                                 alt="Equipo de Audio de Omega Records"
+                                 alt="Trabajos realizados de musica"
                             >
                             <span class="img_txt">Portafolio</span>
                         </figure>
@@ -85,7 +88,7 @@ Somos un Estudio de Grabación en Guadalajara Jalisco Mexico. Ofrecemos Servicio
                     <div class="about-us gray-text">
 						<h2>¿ Quienes Somos ?</h2>
 
-						<p>Somos una Productora, Sello Discografico y Estudio de Grabación en Guadalajara Jalisco México.</p>
+						<p>Somos una Productora, Sello Discográfico y Estudio de Grabación en Guadalajara Jalisco México.</p>
 
 						<p>Ofrecemos Servicios Integrales para la Grabación, Mezcla, Producción y Masterización para cualquier tipo de Proyecto Musical.</p>
 
