@@ -13,13 +13,18 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 
+/public/phpmyadmin
 /database/seeds/
+/public/admin/assets/
 /public/imagenes/usuarios/
 /public/imagenes/studio_gallery/
 /public/imagenes/courses/
 /public/imagenes/instructores/
+/public/imagenes/instalaciones/
+/public/imagenes/instalaciones/
 /public/pdf/
 /storage/fonts/
+/public/webfonts/
 worker.log
 course-messages.log
 
